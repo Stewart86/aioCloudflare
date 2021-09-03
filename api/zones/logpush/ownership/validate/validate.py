@@ -1,0 +1,8 @@
+from api.commons.auth import Auth
+
+
+class Validate(Auth):
+    _AUTH = "AUTH"
+    _endpoint1 = "zones"
+    _endpoint2 = "logpush/ownership/validate"
+    _endpoint3 = None
