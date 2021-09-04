@@ -2,8 +2,8 @@ from enum import Enum
 from logging import Logger
 import logging
 from types import TracebackType
+from httpx import AsyncClient
 
-from aiohttp import ClientSession
 from api.commons.config import Config
 from typing import Optional, Type
 from api.accounts.accounts import Accounts
@@ -59,7 +59,7 @@ class Cloudflare:
         )
 
         self._state = ClientState.UNOPENED
-        self._session = ClientSession()
+        self._session = AsyncClient()
 
     async def __aenter__(self):
         if self._state != ClientState.UNOPENED:
@@ -80,8 +80,10 @@ class Cloudflare:
         traceback: TracebackType = None,
     ) -> None:
         self._state = ClientState.CLOSED
-
         await self._session.__aexit__(exc_type, exc_value, traceback)
+
+    async def aclose(self):
+        await self._session.aclose()
 
     @property
     def accounts(self):

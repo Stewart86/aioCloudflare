@@ -5,6 +5,12 @@ import asyncio
 async def async_main():
     async with Cloudflare() as cf:
         await cf.zones.get()
+        await cf.zones.get()
+        await cf.zones.get()
+        await cf.zones.get()
+        await cf.zones.get()
+        await cf.zones.get()
+        await cf.zones.get()
 
 
 def main():

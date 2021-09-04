@@ -1,7 +1,7 @@
 from typing import Any, Optional
 
 from api.commons.config import Config
-from aiohttp import ClientSession, ClientResponse
+from httpx import AsyncClient
 
 
 class BaseClient:
@@ -11,7 +11,7 @@ class BaseClient:
     _endpoint2 = None
     _endpoint3 = None
 
-    def __init__(self, config: Config, session: ClientSession) -> None:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
         self._session = session
         self._config = config
 
@@ -23,12 +23,12 @@ class BaseClient:
         files: Optional[str] = None,
     ):
         self.__test_print("get", *args, data=data)
-        async with self._session.get(
+        resp = await self._session.get(
             self.build_endpoint("get", *args, data),
-            **{"data": data, "params": params},
-        ) as resp:  # type: ClientResponse
-            print(resp.status)
-            return await resp.text()
+            **{"params": params},
+        )
+        print(resp.status_code)
+        return resp.text
 
     def post(
         self,
