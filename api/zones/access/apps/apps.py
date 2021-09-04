@@ -1,8 +1,8 @@
 from api.commons.auth import Auth
 
+from .ca.ca import Ca
 from .policies.policies import Policies
 from .revoke_tokens.revoke_tokens import RevokeTokens
-from .ca.ca import Ca
 
 
 class Apps(Auth):

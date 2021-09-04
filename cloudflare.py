@@ -1,18 +1,19 @@
+import logging
 from enum import Enum
 from logging import Logger
-import logging
 from types import TracebackType
-from httpx import AsyncClient
-
-from api.commons.config import Config
 from typing import Optional, Type
+
+from httpx import AsyncClient
+from httpx._client import BaseClient
+
 from api.accounts.accounts import Accounts
+from api.commons.config import Config
 from api.graphql.graphql import Graphql
 from api.memberships.memberships import Memberships
 from api.railguns.railguns import Railguns
 from api.user.user import User
 from api.zones.zones import Zones
-
 
 LOGGER = logging.getLogger(__name__)
 
@@ -44,6 +45,7 @@ class Cloudflare:
         debug: Optional[bool] = False,
         test: Optional[bool] = None,
         logger: Optional[Logger] = None,
+        session: Optional[BaseClient] = None,
     ) -> None:
         self._config = Config(
             EMAIL=email,
@@ -51,15 +53,22 @@ class Cloudflare:
             CERTTOKEN=certtoken,
             RAW=raw,
             PROFILE=profile,
-            BASE_URL=base_url,
-            USER_AGENT=user_agent,
             DEBUG=debug,
             TEST=test if test is not None else True,
             LOGGER=logger if logger is not None else LOGGER,
         )
+        if user_agent:
+            self._config.USER_AGENT = user_agent
+
+        if base_url:
+            self._config.BASE_URL = base_url
+
+        if session is None:
+            self._session = AsyncClient(base_url=self._config.BASE_URL)
+        else:
+            self._session = session
 
         self._state = ClientState.UNOPENED
-        self._session = AsyncClient()
 
     async def __aenter__(self):
         if self._state != ClientState.UNOPENED:

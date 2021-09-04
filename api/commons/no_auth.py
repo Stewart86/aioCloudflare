@@ -1,4 +1,19 @@
-from typing import Any, Optional
+import typing
+
+from httpx._client import UseClientDefault
+from httpx._models import Response
+from httpx._types import (
+    AuthTypes,
+    CookieTypes,
+    HeaderTypes,
+    QueryParamTypes,
+    RequestContent,
+    RequestData,
+    RequestFiles,
+    TimeoutTypes,
+)
+
+from api.commons.exceptions import CloudflareMethodNotAvailable
 
 from .base import BaseClient
 
@@ -7,47 +22,74 @@ class NoAuth(BaseClient):
     def __repr__(self) -> str:
         return f"derived from: NoAuth, class: {self.__class__.__name__}"
 
-    def get(
+    async def post(
         self,
         *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().get(*args, params=params, data=data, files=files)
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = None,
+        allow_redirects: typing.Union[bool, UseClientDefault] = None,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
+    ) -> Response:
+        """Method is not available
+        ---
+        """
+        raise CloudflareMethodNotAvailable("Method is not available for the endpoint.")
 
-    def post(
+    async def put(
         self,
         *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = None,
+        allow_redirects: typing.Union[bool, UseClientDefault] = None,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
-        return super().post(*args, params=params, data=data, files=files)
+        """Method is not available
+        ---
+        """
+        raise CloudflareMethodNotAvailable("Method is not available for the endpoint.")
 
-    def put(
+    async def delete(
         self,
         *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = None,
+        allow_redirects: typing.Union[bool, UseClientDefault] = None,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
-        return super().put(*args, params=params, data=data, files=files)
+        """Method is not available
+        ---
+        """
+        raise CloudflareMethodNotAvailable("Method is not available for the endpoint.")
 
-    def delete(
+    async def patch(
         self,
         *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = None,
+        allow_redirects: typing.Union[bool, UseClientDefault] = None,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
-        return super().delete(*args, params=params, data=data, files=files)
-
-    def patch(
-        self,
-        *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().patch(*args, params=params, data=data, files=files)
+        """Method is not available
+        ---
+        """
+        raise CloudflareMethodNotAvailable("Method is not available for the endpoint.")

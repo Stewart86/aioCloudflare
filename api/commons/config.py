@@ -1,7 +1,15 @@
+import os
 from dataclasses import dataclass
 from logging import Logger
-import os
 from typing import Optional
+
+try:
+    import dotenv
+except ImportError:
+    dotenv = None
+
+if dotenv:
+    dotenv.load_dotenv()
 
 
 @dataclass(init=True, frozen=True)
@@ -14,7 +22,7 @@ class Config:
     BASE_URL: Optional[str] = os.getenv(
         "CF_API_URL", "https://api.cloudflare.com/client/v4"
     )
-    DEBUG: str = os.getenv("")
-    TEST: bool = os.getenv("")
+    DEBUG: bool = os.getenv("", False)
+    TEST: bool = os.getenv("", False)
     LOGGER: Logger = None
-    USER_AGENT: str = ""
+    USER_AGENT: str = "aiocloudflare".encode("ascii")

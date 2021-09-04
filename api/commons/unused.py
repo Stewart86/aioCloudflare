@@ -1,53 +1,27 @@
-from typing import Any, Optional
+from api.commons.no_auth import NoAuth
 
-from .base import BaseClient
+from httpx._models import Response
+from httpx._types import (
+    CookieTypes,
+    HeaderTypes,
+    QueryParamTypes,
+)
+
+from api.commons.exceptions import CloudflareMethodNotAvailable
 
 
-class Unused(BaseClient):
+class Unused(NoAuth):
     def __repr__(self) -> str:
         return f"derived from: Unused, class: {self.__class__.__name__}"
 
-    def get(
+    async def get(
         self,
         *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().get(*args, params=params, data=data, files=files)
-
-    def post(
-        self,
-        *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().post(*args, params=params, data=data, files=files)
-
-    def put(
-        self,
-        *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().put(*args, params=params, data=data, files=files)
-
-    def delete(
-        self,
-        *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().delete(*args, params=params, data=data, files=files)
-
-    def patch(
-        self,
-        *args: str,
-        params: Optional[dict[str, Any]] = None,
-        data: Optional[dict[str, Any]] = None,
-        files: Optional[str] = None,
-    ):
-        return super().patch(*args, params=params, data=data, files=files)
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+    ) -> Response:
+        """Method is not available
+        ---
+        """
+        raise CloudflareMethodNotAvailable("Method is not available for the endpoint.")

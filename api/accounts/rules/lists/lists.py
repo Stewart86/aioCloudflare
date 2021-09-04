@@ -1,7 +1,7 @@
 from api.commons.auth import Auth
 
-from .items.items import Items
 from .bulk_operations.bulk_operations import BulkOperations
+from .items.items import Items
 
 
 class Lists(Auth):
