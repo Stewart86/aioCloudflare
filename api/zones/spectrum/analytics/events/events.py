@@ -12,8 +12,8 @@ class Events(Unused):
 
     @property
     def bytime(self):
-        return Bytime()
+        return Bytime(self._config, self._session)
 
     @property
     def summary(self):
-        return Summary()
+        return Summary(self._config, self._session)

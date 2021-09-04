@@ -11,4 +11,4 @@ class Organizations(Auth):
 
     @property
     def revoke_user(self):
-        return RevokeUser()
+        return RevokeUser(self._config, self._session)

@@ -12,8 +12,8 @@ class Analytics(Unused):
 
     @property
     def aggregate(self):
-        return Aggregate()
+        return Aggregate(self._config, self._session)
 
     @property
     def events(self):
-        return Events()
+        return Events(self._config, self._session)

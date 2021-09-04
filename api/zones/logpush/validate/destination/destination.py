@@ -11,4 +11,4 @@ class Destination(Unused):
 
     @property
     def exists(self):
-        return Exists()
+        return Exists(self._config, self._session)

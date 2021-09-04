@@ -12,8 +12,8 @@ class Datasets(Unused):
 
     @property
     def fields(self):
-        return Fields()
+        return Fields(self._config, self._session)
 
     @property
     def jobs(self):
-        return Jobs()
+        return Jobs(self._config, self._session)

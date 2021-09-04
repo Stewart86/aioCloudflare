@@ -150,7 +150,7 @@ class CodeGen:
             [
                 "    @property",
                 f"    def {prop_name}(self):",
-                f"        return {self.__class_name(prop_name)}()",
+                f"        return {self.__class_name(prop_name)}(self._config, self._session)",
             ]
         )
 

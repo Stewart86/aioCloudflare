@@ -11,4 +11,4 @@ class Analytics(Auth):
 
     @property
     def stored(self):
-        return Stored()
+        return Stored(self._config, self._session)

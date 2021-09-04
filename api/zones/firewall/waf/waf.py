@@ -12,8 +12,8 @@ class Waf(Unused):
 
     @property
     def overrides(self):
-        return Overrides()
+        return Overrides(self._config, self._session)
 
     @property
     def packages(self):
-        return Packages()
+        return Packages(self._config, self._session)

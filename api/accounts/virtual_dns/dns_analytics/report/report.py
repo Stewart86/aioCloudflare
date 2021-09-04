@@ -11,4 +11,4 @@ class Report(Auth):
 
     @property
     def bytime(self):
-        return Bytime()
+        return Bytime(self._config, self._session)

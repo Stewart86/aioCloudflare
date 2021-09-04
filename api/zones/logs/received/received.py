@@ -11,4 +11,4 @@ class Received(AuthUnwrapped):
 
     @property
     def fields(self):
-        return Fields()
+        return Fields(self._config, self._session)

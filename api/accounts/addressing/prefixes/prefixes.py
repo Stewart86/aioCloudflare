@@ -12,8 +12,8 @@ class Prefixes(Auth):
 
     @property
     def bgp(self):
-        return Bgp()
+        return Bgp(self._config, self._session)
 
     @property
     def delegations(self):
-        return Delegations()
+        return Delegations(self._config, self._session)

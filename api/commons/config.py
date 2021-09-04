@@ -17,4 +17,4 @@ class Config:
     DEBUG: str = os.getenv("")
     TEST: bool = os.getenv("")
     LOGGER: Logger = None
-    USER_AGENT: dict[str, str] = {}
+    USER_AGENT: str = ""

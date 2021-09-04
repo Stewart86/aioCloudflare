@@ -12,8 +12,8 @@ class Validate(Unused):
 
     @property
     def destination(self):
-        return Destination()
+        return Destination(self._config, self._session)
 
     @property
     def origin(self):
-        return Origin()
+        return Origin(self._config, self._session)

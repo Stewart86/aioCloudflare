@@ -11,4 +11,4 @@ class Hostnames(Auth):
 
     @property
     def certificates(self):
-        return Certificates()
+        return Certificates(self._config, self._session)

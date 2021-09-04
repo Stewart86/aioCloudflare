@@ -11,4 +11,4 @@ class AccessRules(Unused):
 
     @property
     def rules(self):
-        return Rules()
+        return Rules(self._config, self._session)

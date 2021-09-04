@@ -31,84 +31,84 @@ class Accounts(Auth):
 
     @property
     def billing(self):
-        return Billing()
+        return Billing(self._config, self._session)
 
     @property
     def custom_pages(self):
-        return CustomPages()
+        return CustomPages(self._config, self._session)
 
     @property
     def members(self):
-        return Members()
+        return Members(self._config, self._session)
 
     @property
     def railguns(self):
-        return Railguns()
+        return Railguns(self._config, self._session)
 
     @property
     def registrar(self):
-        return Registrar()
+        return Registrar(self._config, self._session)
 
     @property
     def roles(self):
-        return Roles()
+        return Roles(self._config, self._session)
 
     @property
     def rules(self):
-        return Rules()
+        return Rules(self._config, self._session)
 
     @property
     def rulesets(self):
-        return Rulesets()
+        return Rulesets(self._config, self._session)
 
     @property
     def storage(self):
-        return Storage()
+        return Storage(self._config, self._session)
 
     @property
     def subscriptions(self):
-        return Subscriptions()
+        return Subscriptions(self._config, self._session)
 
     @property
     def tunnels(self):
-        return Tunnels()
+        return Tunnels(self._config, self._session)
 
     @property
     def virtual_dns(self):
-        return VirtualDns()
+        return VirtualDns(self._config, self._session)
 
     @property
     def workers(self):
-        return Workers()
+        return Workers(self._config, self._session)
 
     @property
     def addressing(self):
-        return Addressing()
+        return Addressing(self._config, self._session)
 
     @property
     def audit_logs(self):
-        return AuditLogs()
+        return AuditLogs(self._config, self._session)
 
     @property
     def load_balancers(self):
-        return LoadBalancers()
+        return LoadBalancers(self._config, self._session)
 
     @property
     def firewall(self):
-        return Firewall()
+        return Firewall(self._config, self._session)
 
     @property
     def secondary_dns(self):
-        return SecondaryDns()
+        return SecondaryDns(self._config, self._session)
 
     @property
     def stream(self):
-        return Stream()
+        return Stream(self._config, self._session)
 
     @property
     def access(self):
-        return Access()
+        return Access(self._config, self._session)
 
     @property
     def diagnostics(self):
-        return Diagnostics()
+        return Diagnostics(self._config, self._session)

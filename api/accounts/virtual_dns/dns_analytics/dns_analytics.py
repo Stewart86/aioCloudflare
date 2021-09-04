@@ -11,4 +11,4 @@ class DnsAnalytics(Unused):
 
     @property
     def report(self):
-        return Report()
+        return Report(self._config, self._session)

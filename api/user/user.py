@@ -20,40 +20,40 @@ class User(Auth):
 
     @property
     def billing(self):
-        return Billing()
+        return Billing(self._config, self._session)
 
     @property
     def firewall(self):
-        return Firewall()
+        return Firewall(self._config, self._session)
 
     @property
     def invites(self):
-        return Invites()
+        return Invites(self._config, self._session)
 
     @property
     def organizations(self):
-        return Organizations()
+        return Organizations(self._config, self._session)
 
     @property
     def subscriptions(self):
-        return Subscriptions()
+        return Subscriptions(self._config, self._session)
 
     @property
     def load_balancers(self):
-        return LoadBalancers()
+        return LoadBalancers(self._config, self._session)
 
     @property
     def workers(self):
-        return Workers()
+        return Workers(self._config, self._session)
 
     @property
     def audit_logs(self):
-        return AuditLogs()
+        return AuditLogs(self._config, self._session)
 
     @property
     def load_balancing_analytics(self):
-        return LoadBalancingAnalytics()
+        return LoadBalancingAnalytics(self._config, self._session)
 
     @property
     def tokens(self):
-        return Tokens()
+        return Tokens(self._config, self._session)

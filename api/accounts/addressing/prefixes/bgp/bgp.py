@@ -11,4 +11,4 @@ class Bgp(Unused):
 
     @property
     def status(self):
-        return Status()
+        return Status(self._config, self._session)

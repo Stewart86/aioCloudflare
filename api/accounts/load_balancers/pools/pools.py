@@ -13,12 +13,12 @@ class Pools(Auth):
 
     @property
     def health(self):
-        return Health()
+        return Health(self._config, self._session)
 
     @property
     def preview(self):
-        return Preview()
+        return Preview(self._config, self._session)
 
     @property
     def references(self):
-        return References()
+        return References(self._config, self._session)

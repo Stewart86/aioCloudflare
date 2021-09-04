@@ -11,4 +11,4 @@ class Scripts(Auth):
 
     @property
     def schedules(self):
-        return Schedules()
+        return Schedules(self._config, self._session)

@@ -13,12 +13,12 @@ class Namespaces(Auth):
 
     @property
     def bulk(self):
-        return Bulk()
+        return Bulk(self._config, self._session)
 
     @property
     def keys(self):
-        return Keys()
+        return Keys(self._config, self._session)
 
     @property
     def values(self):
-        return Values()
+        return Values(self._config, self._session)

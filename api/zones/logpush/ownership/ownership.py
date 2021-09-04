@@ -11,4 +11,4 @@ class Ownership(Auth):
 
     @property
     def validate(self):
-        return Validate()
+        return Validate(self._config, self._session)

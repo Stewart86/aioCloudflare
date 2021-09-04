@@ -12,8 +12,8 @@ class Lists(Auth):
 
     @property
     def items(self):
-        return Items()
+        return Items(self._config, self._session)
 
     @property
     def bulk_operations(self):
-        return BulkOperations()
+        return BulkOperations(self._config, self._session)

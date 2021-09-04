@@ -11,4 +11,4 @@ class Script(Auth):
 
     @property
     def bindings(self):
-        return Bindings()
+        return Bindings(self._config, self._session)

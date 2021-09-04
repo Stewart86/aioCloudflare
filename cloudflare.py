@@ -1,7 +1,11 @@
+from enum import Enum
 from logging import Logger
 import logging
+from types import TracebackType
+
+from aiohttp import ClientSession
 from api.commons.config import Config
-from typing import Optional
+from typing import Optional, Type
 from api.accounts.accounts import Accounts
 from api.graphql.graphql import Graphql
 from api.memberships.memberships import Memberships
@@ -11,6 +15,20 @@ from api.zones.zones import Zones
 
 
 LOGGER = logging.getLogger(__name__)
+
+
+class ClientState(Enum):
+    # UNOPENED:
+    #   The client has been instantiated, but has not been used to send a request,
+    #   or been opened by entering the context of a `with` block.
+    UNOPENED = 1
+    # OPENED:
+    #   The client has either sent a request, or is within a `with` block.
+    OPENED = 2
+    # CLOSED:
+    #   The client has either exited the `with` block, or `close()` has
+    #   been called explicitly.
+    CLOSED = 3
 
 
 class Cloudflare:
@@ -40,26 +58,51 @@ class Cloudflare:
             LOGGER=logger if logger is not None else LOGGER,
         )
 
+        self._state = ClientState.UNOPENED
+        self._session = ClientSession()
+
+    async def __aenter__(self):
+        if self._state != ClientState.UNOPENED:
+            msg = {
+                ClientState.OPENED: "Cannot open a client instance more than once.",
+                ClientState.CLOSED: "Cannot reopen a client instance, once it has been closed.",
+            }[self._state]
+            raise RuntimeError(msg)
+
+        self._state = ClientState.OPENED
+        await self._session.__aenter__()
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Type[BaseException] = None,
+        exc_value: BaseException = None,
+        traceback: TracebackType = None,
+    ) -> None:
+        self._state = ClientState.CLOSED
+
+        await self._session.__aexit__(exc_type, exc_value, traceback)
+
     @property
     def accounts(self):
-        return Accounts()
+        return Accounts(self._config, self._session)
 
     @property
     def graphql(self):
-        return Graphql()
+        return Graphql(self._config, self._session)
 
     @property
     def memberships(self):
-        return Memberships()
+        return Memberships(self._config, self._session)
 
     @property
     def railguns(self):
-        return Railguns()
+        return Railguns(self._config, self._session)
 
     @property
     def user(self):
-        return User()
+        return User(self._config, self._session)
 
     @property
     def zones(self):
-        return Zones()
+        return Zones(self._config, self._session)

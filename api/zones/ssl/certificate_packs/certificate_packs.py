@@ -12,8 +12,8 @@ class CertificatePacks(Auth):
 
     @property
     def order(self):
-        return Order()
+        return Order(self._config, self._session)
 
     @property
     def quota(self):
-        return Quota()
+        return Quota(self._config, self._session)

@@ -11,4 +11,4 @@ class Aggregate(Unused):
 
     @property
     def current(self):
-        return Current()
+        return Current(self._config, self._session)

@@ -11,4 +11,4 @@ class Latency(Auth):
 
     @property
     def colos(self):
-        return Colos()
+        return Colos(self._config, self._session)

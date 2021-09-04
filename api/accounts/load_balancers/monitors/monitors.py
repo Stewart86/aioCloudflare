@@ -12,8 +12,8 @@ class Monitors(Auth):
 
     @property
     def preview(self):
-        return Preview()
+        return Preview(self._config, self._session)
 
     @property
     def references(self):
-        return References()
+        return References(self._config, self._session)

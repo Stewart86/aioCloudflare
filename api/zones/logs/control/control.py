@@ -11,4 +11,4 @@ class Control(Auth):
 
     @property
     def retention(self):
-        return Retention()
+        return Retention(self._config, self._session)

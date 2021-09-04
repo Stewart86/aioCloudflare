@@ -12,8 +12,8 @@ class Packages(Auth):
 
     @property
     def groups(self):
-        return Groups()
+        return Groups(self._config, self._session)
 
     @property
     def rules(self):
-        return Rules()
+        return Rules(self._config, self._session)

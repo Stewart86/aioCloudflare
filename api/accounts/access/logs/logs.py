@@ -11,4 +11,4 @@ class Logs(Unused):
 
     @property
     def access_requests(self):
-        return AccessRequests()
+        return AccessRequests(self._config, self._session)

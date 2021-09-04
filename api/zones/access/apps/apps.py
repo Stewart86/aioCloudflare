@@ -13,12 +13,12 @@ class Apps(Auth):
 
     @property
     def policies(self):
-        return Policies()
+        return Policies(self._config, self._session)
 
     @property
     def revoke_tokens(self):
-        return RevokeTokens()
+        return RevokeTokens(self._config, self._session)
 
     @property
     def ca(self):
-        return Ca()
+        return Ca(self._config, self._session)

@@ -11,4 +11,4 @@ class Railguns(Auth):
 
     @property
     def zones(self):
-        return Zones()
+        return Zones(self._config, self._session)

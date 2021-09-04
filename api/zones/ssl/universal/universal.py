@@ -11,4 +11,4 @@ class Universal(Unused):
 
     @property
     def settings(self):
-        return Settings()
+        return Settings(self._config, self._session)

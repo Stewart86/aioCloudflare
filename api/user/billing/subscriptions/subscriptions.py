@@ -12,8 +12,8 @@ class Subscriptions(Unused):
 
     @property
     def apps(self):
-        return Apps()
+        return Apps(self._config, self._session)
 
     @property
     def zones(self):
-        return Zones()
+        return Zones(self._config, self._session)

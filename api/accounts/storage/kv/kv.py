@@ -11,4 +11,4 @@ class Kv(Unused):
 
     @property
     def namespaces(self):
-        return Namespaces()
+        return Namespaces(self._config, self._session)

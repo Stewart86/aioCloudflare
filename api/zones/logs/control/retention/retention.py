@@ -11,4 +11,4 @@ class Retention(Unused):
 
     @property
     def flag(self):
-        return Flag()
+        return Flag(self._config, self._session)
