@@ -13,8 +13,7 @@ async def async_main():
 
 async def get_zone():
     async with Cloudflare(debug=True) as cf:
-        await cf.zones.analytics.get()
-        await cf.zones.get()
+        await cf.zones.post()
         await cf.zones.settings.get("ss")
 
 
@@ -26,6 +25,7 @@ def main():
     # cf.zones.dns_records.get("1")
     # cf.zones.logs.received.get("df")
 
+    # await cf.zones.analytics.get()
     # cf.zones.origin_tls_client_auth.hostnames.certificates.get("sdf")
 
     # # import is written as import_ as import is a python keyword
