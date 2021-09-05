@@ -32,7 +32,8 @@ def main() -> None:
     # cf.zones.dns_records.import_.get("1")
     # cf.accounts.rulesets.import_.patch("1")
 
-    # # 0rtt is written as ortt as class name does not allow digit as a start of the name
+    # # 0rtt is written as ortt as class name does not allow digit
+    # as a start of the name
     # cf.zones.settings.ortt.get("1")
     pass
 

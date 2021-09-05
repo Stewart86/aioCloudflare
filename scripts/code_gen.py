@@ -70,7 +70,7 @@ class CodeGen:
                 directory = None
                 clean_path = [i.split("::")[1] for i in class_["path"]]  # type: ignore
 
-                if len(clean_path) == 1 and clean_path[0] == root["root"]:  # type: ignore
+                if len(clean_path) == 1 and clean_path[0] == root["root"]:  # type: ignore    # noqa
                     directory = main_directory / clean_path[0]  # type: ignore
 
                 else:
@@ -149,7 +149,7 @@ class CodeGen:
             [
                 "    @property",
                 f"    def {prop_name}(self) -> {self.__class_name(prop_name)}:",
-                f"        return {self.__class_name(prop_name)}(self._config, self._session)",
+                f"        return {self.__class_name(prop_name)}(self._config, self._session)",  # noqa
             ]
         )
 

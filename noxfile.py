@@ -105,11 +105,8 @@ def safety(session: Session) -> None:
 @session(python=python_versions)
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
-    session.install(".")
     session.install("mypy")
-    session.run("mypy")
-    if not session.posargs:
-        session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
+    session.run("mypy", ".")
 
 
 @session(python=python_versions)
