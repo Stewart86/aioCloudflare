@@ -9,5 +9,5 @@ class Bgp(Unused):
     _endpoint3 = "bgp"
 
     @property
-    def status(self):
+    def status(self) -> Status:
         return Status(self._config, self._session)

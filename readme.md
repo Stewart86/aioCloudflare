@@ -1,3 +1,7 @@
+
+QAs:
+- mypy done
+
 ### Todo
 
 - add config

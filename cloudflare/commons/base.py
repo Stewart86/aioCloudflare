@@ -10,12 +10,13 @@ from httpx._types import (
     HeaderTypes,
     QueryParamTypes,
     RequestContent,
-    RequestData,
     RequestFiles,
     TimeoutTypes,
 )
 
 from cloudflare.commons.config import Config
+
+RequestData = dict[Any, Any]
 
 
 class BaseClient:
@@ -32,7 +33,7 @@ class BaseClient:
 
     def debug_print(
         self, method: str, *args: str, data: Optional[dict[str, Any]] = None
-    ):
+    ) -> None:
         endpoint = self.build_endpoint(method, *args, data=data)
         self._config.LOGGER.debug(
             f"Request starts.. Method: {method.upper()}, {self}, path: /{endpoint}"
@@ -40,7 +41,7 @@ class BaseClient:
 
     def build_endpoint(
         self, method: str, *args: str, data: Optional[dict[Any, Any]] = None
-    ):
+    ) -> str:
         url = []
         if self._endpoint2 or (data and method == "get"):
             if len(args) == 0:
@@ -48,16 +49,13 @@ class BaseClient:
 
             if len(args) == 1 and self._endpoint2:
                 url.append(self._endpoint1)
-                if args[0] is not None:
-                    url.append(args[0])
+                url.append(args[0])
                 url.append(self._endpoint2)
             elif len(args) == 2 and self._endpoint2:
                 url.append(self._endpoint1)
-                if args[0] is not None:
-                    url.append(args[0])
+                url.append(args[0])
                 url.append(self._endpoint2)
-                if args[1] is not None:
-                    url.append(args[1])
+                url.append(args[1])
         else:
             if len(args) == 0:
                 url.append(self._endpoint1)
@@ -86,9 +84,9 @@ class Get:
     async def get(
         self,
         *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -118,13 +116,13 @@ class Post:
     async def post(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
         json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -157,17 +155,17 @@ class Put:
     async def put(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
         json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
+    ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("put", *args, data=data)
         request = getattr(self, "_session").build_request(
@@ -196,17 +194,17 @@ class Patch:
     async def patch(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
         json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
+    ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("patch", *args, data=data)
         request = getattr(self, "_session").build_request(
@@ -235,13 +233,13 @@ class Delete:
     async def delete(
         self,
         *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
+    ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("delete", *args)
         request = getattr(self, "_session").build_request(

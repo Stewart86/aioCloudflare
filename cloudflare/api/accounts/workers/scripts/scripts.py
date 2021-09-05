@@ -9,5 +9,5 @@ class Scripts(Auth):
     _endpoint3 = None
 
     @property
-    def schedules(self):
+    def schedules(self) -> Schedules:
         return Schedules(self._config, self._session)

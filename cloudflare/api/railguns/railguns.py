@@ -9,5 +9,5 @@ class Railguns(Auth):
     _endpoint3 = None
 
     @property
-    def zones(self):
+    def zones(self) -> Zones:
         return Zones(self._config, self._session)

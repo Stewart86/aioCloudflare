@@ -10,9 +10,9 @@ class Subscriptions(Unused):
     _endpoint3 = None
 
     @property
-    def apps(self):
+    def apps(self) -> Apps:
         return Apps(self._config, self._session)
 
     @property
-    def zones(self):
+    def zones(self) -> Zones:
         return Zones(self._config, self._session)

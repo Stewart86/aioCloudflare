@@ -9,5 +9,5 @@ class AccessRules(Unused):
     _endpoint3 = None
 
     @property
-    def rules(self):
+    def rules(self) -> Rules:
         return Rules(self._config, self._session)

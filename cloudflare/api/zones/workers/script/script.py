@@ -9,5 +9,5 @@ class Script(Auth):
     _endpoint3 = None
 
     @property
-    def bindings(self):
+    def bindings(self) -> Bindings:
         return Bindings(self._config, self._session)

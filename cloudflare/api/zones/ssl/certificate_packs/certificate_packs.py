@@ -10,9 +10,9 @@ class CertificatePacks(Auth):
     _endpoint3 = None
 
     @property
-    def order(self):
+    def order(self) -> Order:
         return Order(self._config, self._session)
 
     @property
-    def quota(self):
+    def quota(self) -> Quota:
         return Quota(self._config, self._session)

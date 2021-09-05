@@ -20,10 +20,10 @@ AUTH_CLASS = {
 
 
 class CodeGen:
-    def __init__(self, data: list[dict[str, list[list[str]]]]):
+    def __init__(self, data: list[dict[str, list[list[str]]]]) -> None:
         self._data = data
 
-    def build_tree(self):
+    def build_tree(self) -> str:
         result: list[
             dict[str, Union[str, list[dict[str, Union[str, list[str], bool, None]]]]]
         ] = []
@@ -62,7 +62,7 @@ class CodeGen:
         # return result for debug print statement
         return result
 
-    def build_file(self):
+    def build_file(self) -> None:
         for root in self._tree:
             main_directory: Path = Path(__file__).parent.parent / "cloudflare" / "api"
             for class_ in root["classes"]:
@@ -97,12 +97,12 @@ class CodeGen:
                 # class
                 to_file.extend(
                     self.__build_class(
-                        str(class_["name"]).split("::")[1],
-                        class_["auth"],
-                        class_["props"],
-                        class_["endpoint1"],
-                        class_["endpoint2"],
-                        class_["endpoint3"],
+                        str(class_["name"]).split("::")[1],  # type: ignore
+                        class_["auth"],  # type: ignore
+                        class_["props"],  # type: ignore
+                        class_["endpoint1"],  # type: ignore
+                        class_["endpoint2"],  # type: ignore
+                        class_["endpoint3"],  # type: ignore
                     )
                 )
 
@@ -110,7 +110,7 @@ class CodeGen:
                 if directory is not None:
                     self.__write_to_file(
                         directory,
-                        f"{str(class_['name']).split('::')[1]}.py",
+                        f"{str(class_['name']).split('::')[1]}.py",  # type: ignore
                         "\n\n".join(to_file),
                     )
                 directory = None
@@ -148,7 +148,7 @@ class CodeGen:
         return "\n".join(
             [
                 "    @property",
-                f"    def {prop_name}(self):",
+                f"    def {prop_name}(self) -> {self.__class_name(prop_name)}:",
                 f"        return {self.__class_name(prop_name)}(self._config, self._session)",
             ]
         )
@@ -219,19 +219,19 @@ class CodeGen:
             raise ValueError("Unexpected number of parameters")
         return result
 
-    def __write_to_file(self, directory: Path, filename, python_code: str) -> None:
+    def __write_to_file(self, directory: Path, filename: str, python_code: str) -> None:
         if not os.path.exists(directory):
             self.__setup_api_dir(directory)
 
         with open(directory / filename, "w") as f:
             f.write(python_code)
 
-    def __setup_api_dir(self, dir_: Path):
+    def __setup_api_dir(self, dir_: Path) -> None:
         os.mkdir(dir_)
         with open(dir_ / "__init__.py", "w") as f:
             f.write("")
 
-    def __split_clean_path(self, endpoint):
+    def __split_clean_path(self, endpoint: list[str]) -> list[str]:
         combined = "/".join(endpoint[1:]).split("/")
         result = []
         for i, d in enumerate(combined):

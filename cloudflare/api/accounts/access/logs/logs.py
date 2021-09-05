@@ -9,5 +9,5 @@ class Logs(Unused):
     _endpoint3 = None
 
     @property
-    def access_requests(self):
+    def access_requests(self) -> AccessRequests:
         return AccessRequests(self._config, self._session)

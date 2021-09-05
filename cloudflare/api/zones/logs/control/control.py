@@ -9,5 +9,5 @@ class Control(Auth):
     _endpoint3 = None
 
     @property
-    def retention(self):
+    def retention(self) -> Retention:
         return Retention(self._config, self._session)

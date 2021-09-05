@@ -9,5 +9,5 @@ class Retention(Unused):
     _endpoint3 = None
 
     @property
-    def flag(self):
+    def flag(self) -> Flag:
         return Flag(self._config, self._session)

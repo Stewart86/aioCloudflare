@@ -10,9 +10,9 @@ class Prefixes(Auth):
     _endpoint3 = None
 
     @property
-    def bgp(self):
+    def bgp(self) -> Bgp:
         return Bgp(self._config, self._session)
 
     @property
-    def delegations(self):
+    def delegations(self) -> Delegations:
         return Delegations(self._config, self._session)

@@ -1,23 +1,23 @@
 import asyncio
 import logging
 
-from cloudflare import Cloudflare
+from cloudflare.cloudflare import Cloudflare
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-async def async_main():
+async def async_main() -> None:
     tasks = [asyncio.create_task(get_zone()) for _ in range(1)]
     await asyncio.gather(*tasks)
 
 
-async def get_zone():
+async def get_zone() -> None:
     async with Cloudflare(debug=True) as cf:
         await cf.zones.post()
         await cf.zones.settings.get("ss")
 
 
-def main():
+def main() -> None:
     # cf = Cloudflare()
     # cf.user.invites.get()
     # cf.user.billing.history.get()

@@ -10,9 +10,9 @@ class Datasets(Unused):
     _endpoint3 = None
 
     @property
-    def fields(self):
+    def fields(self) -> Fields:
         return Fields(self._config, self._session)
 
     @property
-    def jobs(self):
+    def jobs(self) -> Jobs:
         return Jobs(self._config, self._session)

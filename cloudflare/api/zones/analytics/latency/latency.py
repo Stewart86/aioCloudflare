@@ -9,5 +9,5 @@ class Latency(Auth):
     _endpoint3 = None
 
     @property
-    def colos(self):
+    def colos(self) -> Colos:
         return Colos(self._config, self._session)

@@ -11,13 +11,13 @@ class Namespaces(Auth):
     _endpoint3 = None
 
     @property
-    def bulk(self):
+    def bulk(self) -> Bulk:
         return Bulk(self._config, self._session)
 
     @property
-    def keys(self):
+    def keys(self) -> Keys:
         return Keys(self._config, self._session)
 
     @property
-    def values(self):
+    def values(self) -> Values:
         return Values(self._config, self._session)

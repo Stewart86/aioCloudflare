@@ -9,5 +9,5 @@ class DnsAnalytics(Unused):
     _endpoint3 = "dns_analytics"
 
     @property
-    def report(self):
+    def report(self) -> Report:
         return Report(self._config, self._session)

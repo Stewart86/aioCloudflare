@@ -9,5 +9,5 @@ class Aggregate(Unused):
     _endpoint3 = None
 
     @property
-    def current(self):
+    def current(self) -> Current:
         return Current(self._config, self._session)

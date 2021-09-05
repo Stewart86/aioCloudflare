@@ -10,9 +10,9 @@ class Analytics(Unused):
     _endpoint3 = None
 
     @property
-    def aggregate(self):
+    def aggregate(self) -> Aggregate:
         return Aggregate(self._config, self._session)
 
     @property
-    def events(self):
+    def events(self) -> Events:
         return Events(self._config, self._session)

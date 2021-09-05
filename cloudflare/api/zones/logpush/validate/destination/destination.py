@@ -9,5 +9,5 @@ class Destination(Unused):
     _endpoint3 = None
 
     @property
-    def exists(self):
+    def exists(self) -> Exists:
         return Exists(self._config, self._session)

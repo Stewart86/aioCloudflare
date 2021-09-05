@@ -9,5 +9,5 @@ class Kv(Unused):
     _endpoint3 = None
 
     @property
-    def namespaces(self):
+    def namespaces(self) -> Namespaces:
         return Namespaces(self._config, self._session)

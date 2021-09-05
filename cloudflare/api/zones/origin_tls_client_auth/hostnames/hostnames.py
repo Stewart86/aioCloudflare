@@ -9,5 +9,5 @@ class Hostnames(Auth):
     _endpoint3 = None
 
     @property
-    def certificates(self):
+    def certificates(self) -> Certificates:
         return Certificates(self._config, self._session)

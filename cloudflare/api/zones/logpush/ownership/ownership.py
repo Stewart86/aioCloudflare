@@ -9,5 +9,5 @@ class Ownership(Auth):
     _endpoint3 = None
 
     @property
-    def validate(self):
+    def validate(self) -> Validate:
         return Validate(self._config, self._session)

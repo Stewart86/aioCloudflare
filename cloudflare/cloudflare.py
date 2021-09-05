@@ -2,9 +2,9 @@ import logging
 from enum import Enum
 from logging import Logger
 from types import TracebackType
-from typing import Optional, Type, Union
+from typing import Optional, Type
 
-from httpx import AsyncClient, Client
+from httpx import AsyncClient
 
 from cloudflare.api.accounts.accounts import Accounts
 from cloudflare.api.graphql.graphql import Graphql
@@ -67,7 +67,7 @@ class Cloudflare:
 
         self._state = ClientState.UNOPENED
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "Cloudflare":
         if self._state != ClientState.UNOPENED:
             msg = {
                 ClientState.OPENED: "Cannot open a client instance more than once.",
@@ -81,36 +81,36 @@ class Cloudflare:
 
     async def __aexit__(
         self,
-        exc_type: Type[BaseException] = None,
-        exc_value: BaseException = None,
-        traceback: TracebackType = None,
+        exc_type: Type[BaseException],
+        exc_value: BaseException,
+        traceback: TracebackType,
     ) -> None:
         self._state = ClientState.CLOSED
         await self._session.__aexit__(exc_type, exc_value, traceback)
 
-    async def aclose(self):
+    async def aclose(self) -> None:
         await self._session.aclose()
 
     @property
-    def accounts(self):
+    def accounts(self) -> Accounts:
         return Accounts(self._config, self._session)
 
     @property
-    def graphql(self):
+    def graphql(self) -> Graphql:
         return Graphql(self._config, self._session)
 
     @property
-    def memberships(self):
+    def memberships(self) -> Memberships:
         return Memberships(self._config, self._session)
 
     @property
-    def railguns(self):
+    def railguns(self) -> Railguns:
         return Railguns(self._config, self._session)
 
     @property
-    def user(self):
+    def user(self) -> User:
         return User(self._config, self._session)
 
     @property
-    def zones(self):
+    def zones(self) -> Zones:
         return Zones(self._config, self._session)

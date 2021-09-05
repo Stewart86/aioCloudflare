@@ -9,5 +9,5 @@ class Received(AuthUnwrapped):
     _endpoint3 = None
 
     @property
-    def fields(self):
+    def fields(self) -> Fields:
         return Fields(self._config, self._session)

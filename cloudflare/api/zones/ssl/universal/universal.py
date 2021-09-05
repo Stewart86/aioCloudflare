@@ -9,5 +9,5 @@ class Universal(Unused):
     _endpoint3 = None
 
     @property
-    def settings(self):
+    def settings(self) -> Settings:
         return Settings(self._config, self._session)

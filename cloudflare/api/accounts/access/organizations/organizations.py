@@ -9,5 +9,5 @@ class Organizations(Auth):
     _endpoint3 = None
 
     @property
-    def revoke_user(self):
+    def revoke_user(self) -> RevokeUser:
         return RevokeUser(self._config, self._session)

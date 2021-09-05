@@ -1,6 +1,8 @@
 import typing
+from typing import Any, Optional, Union
 
-from httpx import USE_CLIENT_DEFAULT, Auth as XAuth
+from httpx import USE_CLIENT_DEFAULT
+from httpx import Auth as XAuth
 from httpx._client import UseClientDefault
 from httpx._models import Request, Response
 from httpx._types import (
@@ -9,7 +11,6 @@ from httpx._types import (
     HeaderTypes,
     QueryParamTypes,
     RequestContent,
-    RequestData,
     RequestFiles,
     TimeoutTypes,
 )
@@ -18,9 +19,11 @@ from cloudflare.commons.exceptions import AuthenticationError
 
 from .base import BaseClient, Delete, Get, Patch, Post, Put
 
+RequestData = dict[Any, Any]
+
 
 class _Auth(XAuth):
-    def __init__(self, email: str, token: str) -> None:
+    def __init__(self, email: Optional[str], token: str) -> None:
         self._email = email
         self._token = token
 
@@ -29,9 +32,10 @@ class _Auth(XAuth):
             request.headers["Authorization"] = f"Bearer {self._token}"
             yield request
 
-        request.headers["X-Auth-Email"] = self._email
-        request.headers["X-Auth-Key"] = self._token
-        yield request
+        if self._email is not None and self._token is not None:
+            request.headers["X-Auth-Email"] = self._email
+            request.headers["X-Auth-Key"] = self._token
+            yield request
 
 
 class Auth(BaseClient, Get, Post, Put, Delete, Patch):
@@ -41,12 +45,12 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def get(
         self,
         *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = None,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
+        auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         """GET method with AUTH"""
         self.__auth_init()
@@ -65,16 +69,16 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def post(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
         json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = None,
-        allow_redirects: typing.Union[bool, UseClientDefault] = None,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
+        auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         self.__auth_init()
         return await super().post(
@@ -96,17 +100,17 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def put(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
         json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = None,
-        allow_redirects: typing.Union[bool, UseClientDefault] = None,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
-    ):
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
+        auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ) -> Response:
         self.__auth_init()
         return await super().put(
             *args,
@@ -127,13 +131,13 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def delete(
         self,
         *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = None,
-        allow_redirects: typing.Union[bool, UseClientDefault] = None,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
-    ):
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
+        auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ) -> Response:
         self.__auth_init()
         return await super().delete(
             *args,
@@ -150,17 +154,17 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def patch(
         self,
         *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
-        json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = None,
-        allow_redirects: typing.Union[bool, UseClientDefault] = None,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
-    ):
+        content: Optional[RequestContent] = None,
+        data: Optional[RequestData] = None,
+        files: Optional[RequestFiles] = None,
+        json: Any = None,
+        params: Optional[QueryParamTypes] = None,
+        headers: Optional[HeaderTypes] = None,
+        cookies: Optional[CookieTypes] = None,
+        auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ) -> Response:
         self.__auth_init()
         return await super().patch(
             *args,
@@ -178,7 +182,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
-    def __auth_init(self):
+    def __auth_init(self) -> None:
         if self._config.EMAIL is None and self._config.TOKEN is None:
             raise AuthenticationError("Email and token cannot be None.")
 

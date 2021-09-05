@@ -9,5 +9,5 @@ class Report(Auth):
     _endpoint3 = None
 
     @property
-    def bytime(self):
+    def bytime(self) -> Bytime:
         return Bytime(self._config, self._session)

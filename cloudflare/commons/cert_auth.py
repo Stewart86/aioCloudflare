@@ -1,5 +1,3 @@
-from typing import Any, Optional
-
 from .base import BaseClient
 
 

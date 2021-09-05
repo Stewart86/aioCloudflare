@@ -10,9 +10,9 @@ class Waf(Unused):
     _endpoint3 = None
 
     @property
-    def overrides(self):
+    def overrides(self) -> Overrides:
         return Overrides(self._config, self._session)
 
     @property
-    def packages(self):
+    def packages(self) -> Packages:
         return Packages(self._config, self._session)

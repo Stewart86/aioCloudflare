@@ -9,5 +9,5 @@ class Analytics(Auth):
     _endpoint3 = None
 
     @property
-    def stored(self):
+    def stored(self) -> Stored:
         return Stored(self._config, self._session)
