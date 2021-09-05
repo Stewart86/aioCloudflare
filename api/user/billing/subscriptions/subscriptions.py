@@ -5,7 +5,6 @@ from .zones.zones import Zones
 
 
 class Subscriptions(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "user/billing/subscriptions"
     _endpoint2 = None
     _endpoint3 = None

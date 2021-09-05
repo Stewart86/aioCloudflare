@@ -5,7 +5,6 @@ from .origin.origin import Origin
 
 
 class Validate(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "logpush/validate"
     _endpoint3 = None

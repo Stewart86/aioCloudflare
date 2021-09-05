@@ -1,6 +1,6 @@
 import typing
 
-from httpx import USE_CLIENT_DEFAULT, AsyncClient, Auth
+from httpx import USE_CLIENT_DEFAULT, Auth
 from httpx._client import UseClientDefault
 from httpx._models import Request, Response
 from httpx._types import (
@@ -14,20 +14,13 @@ from httpx._types import (
     TimeoutTypes,
 )
 
-from api.commons.config import Config
 from api.commons.exceptions import AuthenticationError
 
-from .base import BaseClient
+from .base import BaseClient, Delete, Get, Patch, Post, Put
 
 
 class _Auth(Auth):
     def __init__(self, email: str, token: str) -> None:
-        if email is None and token is None:
-            raise AuthenticationError("Email and token cannot be None.")
-
-        if token is None:
-            raise AuthenticationError("Token is required.")
-
         self._email = email
         self._token = token
 
@@ -41,11 +34,7 @@ class _Auth(Auth):
         yield request
 
 
-class Auth(BaseClient):
-    def __init__(self, config: Config, session: AsyncClient) -> None:
-        super().__init__(config, session)
-        self._auth = _Auth(self._config.EMAIL, self._config.TOKEN)
-
+class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     def __repr__(self) -> str:
         return f"Derived from: Auth, class: {self.__class__.__name__}"
 
@@ -57,6 +46,7 @@ class Auth(BaseClient):
         cookies: CookieTypes = None,
     ) -> Response:
         """GET method with AUTH"""
+        self.__auth_init()
         return await super().get(
             *args,
             params=params,
@@ -81,6 +71,7 @@ class Auth(BaseClient):
         allow_redirects: typing.Union[bool, UseClientDefault] = None,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ) -> Response:
+        self.__auth_init()
         return await super().post(
             *args,
             content=content,
@@ -109,6 +100,7 @@ class Auth(BaseClient):
         allow_redirects: typing.Union[bool, UseClientDefault] = None,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
+        self.__auth_init()
         return await super().put(
             *args,
             content=content,
@@ -133,6 +125,7 @@ class Auth(BaseClient):
         allow_redirects: typing.Union[bool, UseClientDefault] = None,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
+        self.__auth_init()
         return await super().delete(
             *args,
             params=params,
@@ -157,6 +150,7 @@ class Auth(BaseClient):
         allow_redirects: typing.Union[bool, UseClientDefault] = None,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
     ):
+        self.__auth_init()
         return await super().patch(
             *args,
             content=content,
@@ -170,3 +164,12 @@ class Auth(BaseClient):
             allow_redirects=allow_redirects,
             timeout=timeout,
         )
+
+    def __auth_init(self):
+        if self._config.EMAIL is None and self._config.TOKEN is None:
+            raise AuthenticationError("Email and token cannot be None.")
+
+        if self._config.TOKEN is None:
+            raise AuthenticationError("Token is required.")
+
+        self._auth = _Auth(self._config.EMAIL, self._config.TOKEN)

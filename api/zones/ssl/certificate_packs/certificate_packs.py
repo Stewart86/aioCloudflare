@@ -5,7 +5,6 @@ from .quota.quota import Quota
 
 
 class CertificatePacks(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "zones"
     _endpoint2 = "ssl/certificate_packs"
     _endpoint3 = None

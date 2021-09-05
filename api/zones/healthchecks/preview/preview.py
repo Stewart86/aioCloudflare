@@ -2,7 +2,6 @@ from api.commons.auth import Auth
 
 
 class Preview(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "zones"
     _endpoint2 = "healthchecks/preview"
     _endpoint3 = None

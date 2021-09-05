@@ -5,7 +5,6 @@ from .packages.packages import Packages
 
 
 class Waf(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "firewall/waf"
     _endpoint3 = None

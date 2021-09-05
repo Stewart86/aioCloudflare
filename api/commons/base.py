@@ -19,8 +19,6 @@ from api.commons.config import Config
 
 
 class BaseClient:
-    _BASE_URL = "http://www.stewartwong.com"
-    _AUTH = None
     _endpoint1 = ""
     _endpoint2 = None
     _endpoint3 = None
@@ -30,148 +28,12 @@ class BaseClient:
         self._config = config
         self._session.headers = {b"User-Agent": self._config.USER_AGENT}
 
-    async def get(
-        self,
-        *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ) -> Response:
-        if self._config.DEBUG:
-            self.__debug_print("get", *args)
-        request = self._session.build_request(
-            "get",
-            self.build_endpoint("get", *args),
-            params=params,
-            headers=headers,
-            cookies=cookies,
-        )
-        return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
-        )
-
-    async def post(
-        self,
-        *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
-        json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ) -> Response:
-        if self._config.DEBUG:
-            self.__debug_print("post", *args, data=data)
-        request = self._session.build_request(
-            "post",
-            self.build_endpoint("post", *args),
-            params=params,
-            headers=headers,
-            cookies=cookies,
-            files=files,
-            json=json,
-            content=content,
-        )
-        return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
-        )
-
-    async def put(
-        self,
-        *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
-        json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
-        if self._config.DEBUG:
-            self.__debug_print("put", *args, data=data)
-        request = self._session.build_request(
-            "put",
-            self.build_endpoint("put", *args),
-            content=content,
-            cookies=cookies,
-            files=files,
-            headers=headers,
-            json=json,
-            params=params,
-        )
-        return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
-        )
-
-    async def patch(
-        self,
-        *args: str,
-        content: RequestContent = None,
-        data: RequestData = None,
-        files: RequestFiles = None,
-        json: typing.Any = None,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
-        if self._config.DEBUG:
-            self.__debug_print("patch", *args, data=data)
-        request = self._session.build_request(
-            "patch",
-            self.build_endpoint("patch", *args),
-            content=content,
-            cookies=cookies,
-            files=files,
-            headers=headers,
-            json=json,
-            params=params,
-        )
-        return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
-        )
-
-    async def delete(
-        self,
-        *args: str,
-        params: QueryParamTypes = None,
-        headers: HeaderTypes = None,
-        cookies: CookieTypes = None,
-        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-    ):
-        if self._config.DEBUG:
-            self.__debug_print("delete", *args)
-        request = self._session.build_request(
-            "delete",
-            self.build_endpoint("delete", *args),
-            cookies=cookies,
-            headers=headers,
-            params=params,
-        )
-        return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
-        )
-
-    def __debug_print(
+    def debug_print(
         self, method: str, *args: str, data: Optional[dict[str, Any]] = None
     ):
         endpoint = self.build_endpoint(method, *args, data=data)
         self._config.LOGGER.debug(
-            f"Request starts.. Method: {method.upper()}, {self}, path: {endpoint}"
+            f"Request starts.. Method: {method.upper()}, {self}, path: /{endpoint}"
         )
 
     def build_endpoint(
@@ -209,3 +71,174 @@ class BaseClient:
                 url.append(args[2])
 
         return "/".join(url)
+
+
+class Get:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
+        self._session = session
+        self._config = config
+        self._session.headers = {b"User-Agent": self._config.USER_AGENT}
+
+    async def get(
+        self,
+        *args: str,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ) -> Response:
+        if self._config.DEBUG:
+            self.debug_print("get", *args)
+        request = self._session.build_request(
+            "get",
+            self.build_endpoint("get", *args),
+            params=params,
+            headers=headers,
+            cookies=cookies,
+        )
+        return await self._session.send(
+            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+        )
+
+
+class Post:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
+        self._session = session
+        self._config = config
+        self._session.headers = {b"User-Agent": self._config.USER_AGENT}
+
+    async def post(
+        self,
+        *args: str,
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ) -> Response:
+        if self._config.DEBUG:
+            self.debug_print("post", *args, data=data)
+        request = self._session.build_request(
+            "post",
+            self.build_endpoint("post", *args),
+            params=params,
+            headers=headers,
+            cookies=cookies,
+            files=files,
+            json=json,
+            content=content,
+        )
+        return await self._session.send(
+            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+        )
+
+
+class Put:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
+        self._session = session
+        self._config = config
+        self._session.headers = {b"User-Agent": self._config.USER_AGENT}
+
+    async def put(
+        self,
+        *args: str,
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ):
+        if self._config.DEBUG:
+            self.debug_print("put", *args, data=data)
+        request = self._session.build_request(
+            "put",
+            self.build_endpoint("put", *args),
+            content=content,
+            cookies=cookies,
+            files=files,
+            headers=headers,
+            json=json,
+            params=params,
+        )
+        return await self._session.send(
+            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+        )
+
+
+class Patch:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
+        self._session = session
+        self._config = config
+        self._session.headers = {b"User-Agent": self._config.USER_AGENT}
+
+    async def patch(
+        self,
+        *args: str,
+        content: RequestContent = None,
+        data: RequestData = None,
+        files: RequestFiles = None,
+        json: typing.Any = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ):
+        if self._config.DEBUG:
+            self.debug_print("patch", *args, data=data)
+        request = self._session.build_request(
+            "patch",
+            self.build_endpoint("patch", *args),
+            content=content,
+            cookies=cookies,
+            files=files,
+            headers=headers,
+            json=json,
+            params=params,
+        )
+        return await self._session.send(
+            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+        )
+
+
+class Delete:
+    def __init__(self, config: Config, session: AsyncClient) -> None:
+        self._session = session
+        self._config = config
+        self._session.headers = {b"User-Agent": self._config.USER_AGENT}
+
+    async def delete(
+        self,
+        *args: str,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,
+        cookies: CookieTypes = None,
+        auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
+        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+    ):
+        if self._config.DEBUG:
+            self.debug_print("delete", *args)
+        request = self._session.build_request(
+            "delete",
+            self.build_endpoint("delete", *args),
+            cookies=cookies,
+            headers=headers,
+            params=params,
+        )
+        return await self._session.send(
+            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+        )

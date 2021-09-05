@@ -6,7 +6,6 @@ from .values.values import Values
 
 
 class Namespaces(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "accounts"
     _endpoint2 = "storage/kv/namespaces"
     _endpoint3 = None

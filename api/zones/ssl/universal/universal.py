@@ -4,7 +4,6 @@ from .settings.settings import Settings
 
 
 class Universal(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "ssl/universal"
     _endpoint3 = None

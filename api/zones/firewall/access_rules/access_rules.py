@@ -4,7 +4,6 @@ from .rules.rules import Rules
 
 
 class AccessRules(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "firewall/access_rules"
     _endpoint3 = None

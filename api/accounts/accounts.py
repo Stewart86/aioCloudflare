@@ -1,30 +1,29 @@
 from api.commons.auth import Auth
 
-from .access.access import Access
-from .addressing.addressing import Addressing
-from .audit_logs.audit_logs import AuditLogs
 from .billing.billing import Billing
 from .custom_pages.custom_pages import CustomPages
-from .diagnostics.diagnostics import Diagnostics
-from .firewall.firewall import Firewall
-from .load_balancers.load_balancers import LoadBalancers
 from .members.members import Members
 from .railguns.railguns import Railguns
 from .registrar.registrar import Registrar
 from .roles.roles import Roles
 from .rules.rules import Rules
 from .rulesets.rulesets import Rulesets
-from .secondary_dns.secondary_dns import SecondaryDns
 from .storage.storage import Storage
-from .stream.stream import Stream
 from .subscriptions.subscriptions import Subscriptions
 from .tunnels.tunnels import Tunnels
 from .virtual_dns.virtual_dns import VirtualDns
 from .workers.workers import Workers
+from .addressing.addressing import Addressing
+from .audit_logs.audit_logs import AuditLogs
+from .load_balancers.load_balancers import LoadBalancers
+from .firewall.firewall import Firewall
+from .secondary_dns.secondary_dns import SecondaryDns
+from .stream.stream import Stream
+from .access.access import Access
+from .diagnostics.diagnostics import Diagnostics
 
 
 class Accounts(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "accounts"
     _endpoint2 = None
     _endpoint3 = None

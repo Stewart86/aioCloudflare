@@ -5,7 +5,6 @@ from .summary.summary import Summary
 
 
 class Events(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "spectrum/analytics/events"
     _endpoint3 = None

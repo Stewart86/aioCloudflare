@@ -5,7 +5,6 @@ from .events.events import Events
 
 
 class Analytics(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "spectrum/analytics"
     _endpoint3 = None

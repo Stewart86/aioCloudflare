@@ -1,19 +1,18 @@
 from api.commons.auth import Auth
 
-from .audit_logs.audit_logs import AuditLogs
 from .billing.billing import Billing
 from .firewall.firewall import Firewall
 from .invites.invites import Invites
-from .load_balancers.load_balancers import LoadBalancers
-from .load_balancing_analytics.load_balancing_analytics import LoadBalancingAnalytics
 from .organizations.organizations import Organizations
 from .subscriptions.subscriptions import Subscriptions
-from .tokens.tokens import Tokens
+from .load_balancers.load_balancers import LoadBalancers
 from .workers.workers import Workers
+from .audit_logs.audit_logs import AuditLogs
+from .load_balancing_analytics.load_balancing_analytics import LoadBalancingAnalytics
+from .tokens.tokens import Tokens
 
 
 class User(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "user"
     _endpoint2 = None
     _endpoint3 = None

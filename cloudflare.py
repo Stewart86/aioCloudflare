@@ -38,31 +38,33 @@ class Cloudflare:
         email: Optional[str] = None,
         token: Optional[str] = None,
         certtoken: Optional[str] = None,
-        raw: Optional[str] = False,
-        profile: Optional[str] = None,
+        raw: Optional[str] = False,  # TODO
+        profile: Optional[str] = None,  # TODO
         user_agent: Optional[dict[str, str]] = None,
         base_url: Optional[str] = None,
         debug: Optional[bool] = False,
-        test: Optional[bool] = None,
+        test: Optional[bool] = None,  # TODO
         logger: Optional[Logger] = None,
         session: Optional[BaseClient] = None,
     ) -> None:
         self._config = Config(
-            EMAIL=email,
-            TOKEN=token,
-            CERTTOKEN=certtoken,
-            RAW=raw,
-            PROFILE=profile,
-            DEBUG=debug,
-            TEST=test if test is not None else True,
-            LOGGER=logger if logger is not None else LOGGER,
+            email,
+            token,
+            certtoken,
+            raw,
+            profile,
+            user_agent,
+            base_url,
+            debug,
+            test,
         )
-        if user_agent:
-            self._config.USER_AGENT = user_agent
 
-        if base_url:
-            self._config.BASE_URL = base_url
+        if logger:
+            self._config.LOGGER = logger
+        else:
+            self._config.LOGGER = LOGGER
 
+        # session default to AsyncClient
         if session is None:
             self._session = AsyncClient(base_url=self._config.BASE_URL)
         else:

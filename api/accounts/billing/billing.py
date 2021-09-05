@@ -2,7 +2,6 @@ from api.commons.unused import Unused
 
 
 class Billing(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "accounts"
     _endpoint2 = "billing"
     _endpoint3 = None

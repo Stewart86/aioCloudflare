@@ -130,7 +130,6 @@ class CodeGen:
         ep3: str = f'"{e}"' if (e := endpoint3) else e
         class_boiler = [
             f"class {self.__class_name(name)}({self.__get_super_class(auth)}):",
-            f'    _AUTH = "{auth}"',
             f"    _endpoint1 = {ep1}",
             f"    _endpoint2 = {ep2}",
             f"    _endpoint3 = {ep3}",

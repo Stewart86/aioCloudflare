@@ -5,7 +5,6 @@ from .references.references import References
 
 
 class Monitors(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "user/load_balancers/monitors"
     _endpoint2 = None
     _endpoint3 = None

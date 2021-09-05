@@ -5,7 +5,6 @@ from .jobs.jobs import Jobs
 
 
 class Datasets(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "zones"
     _endpoint2 = "logpush/datasets"
     _endpoint3 = None

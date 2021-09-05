@@ -6,7 +6,6 @@ from .references.references import References
 
 
 class Pools(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "user/load_balancers/pools"
     _endpoint2 = None
     _endpoint3 = None

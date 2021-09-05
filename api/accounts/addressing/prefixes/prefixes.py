@@ -5,7 +5,6 @@ from .delegations.delegations import Delegations
 
 
 class Prefixes(Auth):
-    _AUTH = "AUTH"
     _endpoint1 = "accounts"
     _endpoint2 = "addressing/prefixes"
     _endpoint3 = None

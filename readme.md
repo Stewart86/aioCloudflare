@@ -1,6 +1,5 @@
 ### Todo
 
-- Cloudflare init
 - add config
     - docstring
 - add logger

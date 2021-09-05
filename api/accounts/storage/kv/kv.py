@@ -4,7 +4,6 @@ from .namespaces.namespaces import Namespaces
 
 
 class Kv(Unused):
-    _AUTH = "VOID"
     _endpoint1 = "accounts"
     _endpoint2 = "storage/kv"
     _endpoint3 = None
