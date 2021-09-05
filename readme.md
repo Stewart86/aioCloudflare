@@ -3,6 +3,8 @@ QAs:
 - mypy done
 - flake8 done
 - pre-commit done
+- nox done
+- gh action done
 
 ### Todo
 
