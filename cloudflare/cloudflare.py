@@ -2,9 +2,8 @@ import logging
 from enum import Enum
 from logging import Logger
 from types import TracebackType
-from typing import Optional, Type
-
-from httpx import AsyncClient
+from typing import Optional
+from typing import Type
 
 from cloudflare.api.accounts.accounts import Accounts
 from cloudflare.api.graphql.graphql import Graphql
@@ -13,6 +12,7 @@ from cloudflare.api.railguns.railguns import Railguns
 from cloudflare.api.user.user import User
 from cloudflare.api.zones.zones import Zones
 from cloudflare.commons.config import Config
+from httpx import AsyncClient
 
 LOGGER = logging.getLogger(__name__)
 
@@ -70,8 +70,8 @@ class Cloudflare:
     async def __aenter__(self) -> "Cloudflare":
         if self._state != ClientState.UNOPENED:
             msg = {
-                ClientState.OPENED: "Cannot open a client instance more than once.",
-                ClientState.CLOSED: "Cannot reopen a client instance, once it has been closed.",
+                ClientState.OPENED: "Cannot open a client instance more than once.",  # noqa
+                ClientState.CLOSED: "Cannot reopen a client instance, once it has been closed.",  # noqa
             }[self._state]
             raise RuntimeError(msg)
 

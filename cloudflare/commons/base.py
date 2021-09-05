@@ -1,20 +1,20 @@
 import typing
-from typing import Any, Optional
-
-from httpx import USE_CLIENT_DEFAULT, AsyncClient, Headers
-from httpx._client import UseClientDefault
-from httpx._models import Response
-from httpx._types import (
-    AuthTypes,
-    CookieTypes,
-    HeaderTypes,
-    QueryParamTypes,
-    RequestContent,
-    RequestFiles,
-    TimeoutTypes,
-)
+from typing import Any
+from typing import Optional
 
 from cloudflare.commons.config import Config
+from httpx import AsyncClient
+from httpx import Headers
+from httpx import USE_CLIENT_DEFAULT
+from httpx._client import UseClientDefault
+from httpx._models import Response
+from httpx._types import AuthTypes
+from httpx._types import CookieTypes
+from httpx._types import HeaderTypes
+from httpx._types import QueryParamTypes
+from httpx._types import RequestContent
+from httpx._types import RequestFiles
+from httpx._types import TimeoutTypes
 
 RequestData = dict[Any, Any]
 

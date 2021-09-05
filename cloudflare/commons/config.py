@@ -1,7 +1,8 @@
 import os
 from dataclasses import dataclass
 from logging import Logger
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 try:
     import dotenv

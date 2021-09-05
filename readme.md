@@ -2,6 +2,7 @@ QAs:
 
 - mypy done
 - flake8 done
+- pre-commit done
 
 ### Todo
 

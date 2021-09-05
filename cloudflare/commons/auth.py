@@ -1,23 +1,28 @@
 import typing
-from typing import Any, Optional, Union
-
-from httpx import USE_CLIENT_DEFAULT
-from httpx import Auth as XAuth
-from httpx._client import UseClientDefault
-from httpx._models import Request, Response
-from httpx._types import (
-    AuthTypes,
-    CookieTypes,
-    HeaderTypes,
-    QueryParamTypes,
-    RequestContent,
-    RequestFiles,
-    TimeoutTypes,
-)
+from typing import Any
+from typing import Optional
+from typing import Union
 
 from cloudflare.commons.exceptions import AuthenticationError
+from httpx import Auth as XAuth
+from httpx import USE_CLIENT_DEFAULT
+from httpx._client import UseClientDefault
+from httpx._models import Request
+from httpx._models import Response
+from httpx._types import AuthTypes
+from httpx._types import CookieTypes
+from httpx._types import HeaderTypes
+from httpx._types import QueryParamTypes
+from httpx._types import RequestContent
+from httpx._types import RequestFiles
+from httpx._types import TimeoutTypes
 
-from .base import BaseClient, Delete, Get, Patch, Post, Put
+from .base import BaseClient
+from .base import Delete
+from .base import Get
+from .base import Patch
+from .base import Post
+from .base import Put
 
 RequestData = dict[Any, Any]
 

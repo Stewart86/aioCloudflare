@@ -1,4 +1,5 @@
-from .base import BaseClient, Get
+from .base import BaseClient
+from .base import Get
 
 
 class NoAuth(BaseClient, Get):
