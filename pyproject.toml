@@ -4,7 +4,11 @@ version = "0.1.0"
 description = "A Cloudflare API wrapper for Python with asyncio support"
 authors = ["Stewart Wong <siwei.wong@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/stewart86/aiocloudflare"
+repository = "https://github.com/stewart86/aiocloudflare"
 classifiers = [
+    "Development Status :: 1 - Planning",
     "Programming Language :: Python :: 3.9",
 ]
 
