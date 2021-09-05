@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from cloudflare.cloudflare import Cloudflare
+from aiocloudflare.cloudflare import Cloudflare
 
 logging.basicConfig(level=logging.DEBUG)
 
