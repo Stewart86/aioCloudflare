@@ -1,18 +1,19 @@
-
 QAs:
+
 - mypy done
+- flake8 done
 
 ### Todo
 
 - add config
-    - docstring
+  - docstring
 - add logger
-- Auth base classes 
-    - add header
+- Auth base classes
+  - add header
 - add tests
 - add github action
 - Code gen Cloudflare
 - docstrings
 - poetry build
 - poetry publish
-https://github.com/cjolowicz/cookiecutter-hypermodern-python
+  https://github.com/cjolowicz/cookiecutter-hypermodern-python
