@@ -11,11 +11,11 @@ import black
 IMPORT_CHILDREN = "from .{}.{} import {}"
 
 AUTH_CLASS = {
-    "VOID": "from api.commons.unused import Unused",
-    "OPEN": "from api.commons.no_auth import NoAuth",
-    "AUTH": "from api.commons.auth import Auth",
-    "CERT": "from api.commons.cert_auth import CertAuth",
-    "AUTH_UNWRAPPED": "from api.commons.auth_unwrapped import AuthUnwrapped",
+    "VOID": "from cloudflare.commons.unused import Unused",
+    "OPEN": "from cloudflare.commons.no_auth import NoAuth",
+    "AUTH": "from cloudflare.commons.auth import Auth",
+    "CERT": "from cloudflare.commons.cert_auth import CertAuth",
+    "AUTH_UNWRAPPED": "from cloudflare.commons.auth_unwrapped import AuthUnwrapped",
 }
 
 
@@ -64,7 +64,7 @@ class CodeGen:
 
     def build_file(self):
         for root in self._tree:
-            main_directory: Path = Path(__file__).parent.parent / "api"
+            main_directory: Path = Path(__file__).parent.parent / "cloudflare" / "api"
             for class_ in root["classes"]:
                 # assign directory
                 directory = None
@@ -250,11 +250,11 @@ if "__main__" == __name__:
         data = json.load(f)
 
     code_gen: CodeGen = CodeGen(data)
-    print(json.dumps(code_gen.build_tree(), indent=2))
+    code_gen.build_tree()
     code_gen.build_file()
 
     try:
-        black.main(args=("api",))
+        black.main(args=("cloudflare/api",))
     # black  raise SystemExit is unnessary here. catch this to exit gracfully
     except SystemExit:
         pass
