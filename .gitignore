@@ -73,6 +73,11 @@ __pypackages__/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# vscode
+vscode/
 .vscode/settings.json
-.env
 .vscode/launch.json
+
+# env files
+.env
