@@ -1,4 +1,11 @@
 import logging
+from enum import Enum
+from logging import Logger
+from types import TracebackType
+from typing import Optional, Type
+
+from httpx import AsyncClient
+
 from aiocloudflare.api.accounts.accounts import Accounts
 from aiocloudflare.api.graphql.graphql import Graphql
 from aiocloudflare.api.memberships.memberships import Memberships
@@ -6,13 +13,6 @@ from aiocloudflare.api.railguns.railguns import Railguns
 from aiocloudflare.api.user.user import User
 from aiocloudflare.api.zones.zones import Zones
 from aiocloudflare.commons.config import Config
-from enum import Enum
-from logging import Logger
-from types import TracebackType
-from typing import Optional
-from typing import Type
-
-from httpx import AsyncClient
 
 LOGGER = logging.getLogger(__name__)
 

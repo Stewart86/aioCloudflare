@@ -1,8 +1,8 @@
-from aiocloudflare.commons.base import BaseClient
-from aiocloudflare.commons.config import Config
-
 import pytest
 from httpx import AsyncClient
+
+from aiocloudflare.commons.base import BaseClient
+from aiocloudflare.commons.config import Config
 
 
 @pytest.mark.parametrize(
