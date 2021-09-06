@@ -58,6 +58,10 @@ module = "scripts.*"
 strict = false
 ignore_errors = true
 
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

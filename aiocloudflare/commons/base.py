@@ -1,5 +1,5 @@
 import typing
-from typing import Any, Optional
+from typing import Any
 
 from httpx import USE_CLIENT_DEFAULT, AsyncClient, Headers
 from httpx._client import UseClientDefault
@@ -21,8 +21,8 @@ RequestData = dict[Any, Any]
 
 class BaseClient:
     _endpoint1: str = ""
-    _endpoint2: Optional[str] = None
-    _endpoint3: Optional[str] = None
+    _endpoint2: typing.Optional[str] = None
+    _endpoint3: typing.Optional[str] = None
 
     def __init__(self, config: Config, session: AsyncClient) -> None:
         self._session = session
@@ -32,7 +32,7 @@ class BaseClient:
         self._session.headers = headers
 
     def debug_print(
-        self, method: str, *args: str, data: Optional[dict[str, Any]] = None
+        self, method: str, *args: str, data: typing.Optional[dict[str, Any]] = None
     ) -> None:
         endpoint = self.build_endpoint(method, *args, data=data)
         self._config.LOGGER.debug(
@@ -40,7 +40,7 @@ class BaseClient:
         )
 
     def build_endpoint(
-        self, method: str, *args: str, data: Optional[dict[Any, Any]] = None
+        self, method: str, *args: str, data: typing.Optional[dict[Any, Any]] = None
     ) -> str:
         url = [self._endpoint1]
         if self._endpoint2 or (data and method == "get"):
@@ -78,9 +78,9 @@ class Get:
     async def get(
         self,
         *args: str,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -111,20 +111,20 @@ class Post:
     async def post(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: typing.Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("post", *args, data=data)  # noqa
-        request = getattr(self, "_session").build_request(  # noqa
+        request = self._session.build_request(
             "post",
             getattr(self, "build_endpoint")("post", *args),  # noqa
             params=params,
@@ -150,20 +150,20 @@ class Put:
     async def put(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: typing.Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("put", *args, data=data)  # noqa
-        request = getattr(self, "_session").build_request(  # noqa
+        request = self._session.build_request(
             "put",
             getattr(self, "build_endpoint")("put", *args),  # noqa
             content=content,
@@ -189,20 +189,20 @@ class Patch:
     async def patch(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: typing.Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("patch", *args, data=data)  # noqa
-        request = getattr(self, "_session").build_request(  # noqa
+        request = self._session.build_request(
             "patch",
             getattr(self, "build_endpoint")("patch", *args),  # noqa
             content=content,
@@ -228,16 +228,16 @@ class Delete:
     async def delete(
         self,
         *args: str,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("delete", *args)  # noqa
-        request = getattr(self, "_session").build_request(  # noqa
+        request = self._session.build_request(
             "delete",
             getattr(self, "build_endpoint")("delete", *args),  # noqa
             cookies=cookies,

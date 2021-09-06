@@ -45,9 +45,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def get(
         self,
         *args: str,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -69,13 +69,13 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def post(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: typing.Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -100,13 +100,13 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def put(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: typing.Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -131,9 +131,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def delete(
         self,
         *args: str,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
@@ -154,13 +154,13 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
     async def patch(
         self,
         *args: str,
-        content: Optional[RequestContent] = None,
-        data: Optional[RequestData] = None,
-        files: Optional[RequestFiles] = None,
+        content: RequestContent = None,  # type: ignore[assignment]
+        data: RequestData = None,  # type: ignore[assignment]
+        files: RequestFiles = None,  # type: ignore[assignment]
         json: Any = None,
-        params: Optional[QueryParamTypes] = None,
-        headers: Optional[HeaderTypes] = None,
-        cookies: Optional[CookieTypes] = None,
+        params: QueryParamTypes = None,
+        headers: HeaderTypes = None,  # type: ignore[assignment]
+        cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
         allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
         timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
