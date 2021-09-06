@@ -7,6 +7,8 @@ from typing import Union
 
 import black
 
+from scripts.test_gen import TestGen
+
 # constants
 IMPORT_CHILDREN = "from .{}.{} import {}"
 
@@ -59,6 +61,9 @@ class CodeGen:
             result.append(root_)
 
         self._tree = result
+
+        tg = TestGen()
+        print(tg.write(result))
         # return result for debug print statement
         return result
 

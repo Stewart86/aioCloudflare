@@ -56,7 +56,7 @@ def test_base_build_endpoint_with_raises():
 
     args = [i for i in [] if i is not None]
 
-    with pytest.raises(ValueError) as raises:
+    with pytest.raises(ValueError) as error:
         base.build_endpoint("get", *args)
-        assert raises.errisinstance(ValueError)
-        assert raises.value == "args cannot be None"
+        assert error.errisinstance(ValueError)
+        assert error.value == "args cannot be None"

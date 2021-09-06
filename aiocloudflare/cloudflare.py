@@ -44,23 +44,27 @@ class Cloudflare:
         debug: Optional[bool] = False,
         test: Optional[bool] = None,  # TODO
         logger: Optional[Logger] = None,
+        config: Optional[Config] = None,
     ) -> None:
-        self._config = Config(
-            email,
-            token,
-            certtoken,
-            raw,
-            profile,
-            user_agent,
-            base_url,
-            debug,
-            test,
-        )
-
-        if logger:
-            self._config.LOGGER = logger
+        if config:
+            self._config = config
         else:
-            self._config.LOGGER = LOGGER
+            self._config = Config(
+                email,
+                token,
+                certtoken,
+                raw,
+                profile,
+                user_agent,
+                base_url,
+                debug,
+                test,
+            )
+
+            if logger:
+                self._config.LOGGER = logger
+            else:
+                self._config.LOGGER = LOGGER
 
         if b_url := self._config.BASE_URL:
             self._session = AsyncClient(base_url=b_url)

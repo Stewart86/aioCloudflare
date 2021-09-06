@@ -87,9 +87,10 @@ class Get:
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("get", *args)  # noqa
-        request = getattr(self, "_session").build_request(  # noqa
-            "get",
-            getattr(self, "build_endpoint")("get", *args),  # noqa
+        url = getattr(self, "build_endpoint")("get", *args)  # noqa
+        request = self._session.build_request(
+            method="get",
+            url=url,
             params=params,
             headers=headers,
             cookies=cookies,

@@ -574,6 +574,20 @@ toml = "*"
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-asyncio"
+version = "0.15.1"
+description = "Pytest support for asyncio."
+category = "dev"
+optional = false
+python-versions = ">= 3.6"
+
+[package.dependencies]
+pytest = ">=5.4.0"
+
+[package.extras]
+testing = ["coverage", "hypothesis (>=5.7.1)"]
+
+[[package]]
 name = "python-dotenv"
 version = "0.19.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -628,6 +642,17 @@ urllib3 = ">=1.21.1,<1.27"
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
+
+[[package]]
+name = "respx"
+version = "0.17.1"
+description = "A utility for mocking out the Python HTTPX and HTTP Core libraries."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+httpx = ">=0.18.0"
 
 [[package]]
 name = "rfc3986"
@@ -782,7 +807,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "87a7b314542c29ceae603e3b7b8e9b1626d96175f1b1088e613626fb804826c5"
+content-hash = "9bc0386485c48dab54155fdacc17499c1bbbcc584afa34b435acc4b5146b7d1c"
 
 [metadata.files]
 anyio = [
@@ -1051,6 +1076,10 @@ pytest = [
     {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
     {file = "pytest-6.2.5.tar.gz", hash = "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89"},
 ]
+pytest-asyncio = [
+    {file = "pytest-asyncio-0.15.1.tar.gz", hash = "sha256:2564ceb9612bbd560d19ca4b41347b54e7835c2f792c504f698e05395ed63f6f"},
+    {file = "pytest_asyncio-0.15.1-py3-none-any.whl", hash = "sha256:3042bcdf1c5d978f6b74d96a151c4cfb9dcece65006198389ccd7e6c60eb1eea"},
+]
 python-dotenv = [
     {file = "python-dotenv-0.19.0.tar.gz", hash = "sha256:f521bc2ac9a8e03c736f62911605c5d83970021e3fa95b37d769e2bbbe9b6172"},
     {file = "python_dotenv-0.19.0-py2.py3-none-any.whl", hash = "sha256:aae25dc1ebe97c420f50b81fb0e5c949659af713f31fdb63c749ca68748f34b1"},
@@ -1136,6 +1165,10 @@ reorder-python-imports = [
 requests = [
     {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
     {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
+]
+respx = [
+    {file = "respx-0.17.1-py2.py3-none-any.whl", hash = "sha256:34b28dacaa8e0c1bced38d9d183d7633df1f7c06db9802b9157bafa68a11755b"},
+    {file = "respx-0.17.1.tar.gz", hash = "sha256:7bde9b6f311ba51f4651618ccd4c5034df628fe44bc28102b98235c429df68fb"},
 ]
 rfc3986 = [
     {file = "rfc3986-1.5.0-py2.py3-none-any.whl", hash = "sha256:a86d6e1f5b1dc238b218b012df0aa79409667bb209e58da56d0b94704e712a97"},
