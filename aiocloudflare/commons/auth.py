@@ -1,9 +1,9 @@
 import typing
+from aiocloudflare.commons.exceptions import AuthenticationError
 from typing import Any
 from typing import Optional
 from typing import Union
 
-from aiocloudflare.commons.exceptions import AuthenticationError
 from httpx import Auth as XAuth
 from httpx import USE_CLIENT_DEFAULT
 from httpx._client import UseClientDefault
