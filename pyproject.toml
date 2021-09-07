@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "A Cloudflare API wrapper for Python with asyncio support"
 authors = ["Stewart Wong <siwei.wong@gmail.com>"]
 license = "MIT"
+readme = "README.rst"
 homepage = "https://github.com/stewart86/aiocloudflare"
 repository = "https://github.com/stewart86/aiocloudflare"
 classifiers = [
@@ -54,7 +55,7 @@ show_column_numbers = true
 show_error_codes = true
 show_error_context = true
 
-# ignoring typing on scripts/
+# ignoring typing on scripts
 
 [[tool.mypy.overrides]]
 module = "scripts.*"
