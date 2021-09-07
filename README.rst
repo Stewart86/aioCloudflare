@@ -32,6 +32,13 @@ aioCloudflare
    :target: https://github.com/psf/black
    :alt: Black
 
+Inspired by the offical `python-cloudflare` library developed by `Cloudflare`_. This project is created to be competible to use with `asyncio` for non-blocking IO.
+
+For sync code, it is recommanded to use `python-cloudflare` via `pip install python-cloudflare` as it is used by hundreds and offically maintained by cloudflare. This ensure that APIs are always updated according to Cloudflare API release.
+
+*NOTE:* This library is in Pre-Alpha, this means things might break. Do not use it in Production unless you have tested on the API route specific to your use case and that would be at your own risk.
+
+Having said that, do submit an issue if you encounter any bug so we can move away from the Alpha stage sooner.
 
 Features
 --------
@@ -68,6 +75,17 @@ Usage
         async with Cloudflare() as cf:
             result = await cf.zones.get()
 
+Full configuration can be done using `Config()` class.
+
+.. code:: Python
+
+    from aioCloudflare import Cloudflare, Config
+
+    config = Config(email="your@email.com", token="<secret>")
+    async def get_zone():
+        async with Cloudflare(config=config) as cf:
+            result = await cf.zones.get()
+
 
 Contributing
 ------------
@@ -96,3 +114,4 @@ please `file an issue`_ along with a detailed description.
 .. _pip: https://pip.pypa.io/
 .. github-only
 .. _Contributor Guide: CONTRIBUTING.rst
+.. _Cloudflare: https://cloudflare.com
