@@ -8,7 +8,6 @@ welcomes contributions in the form of bug reports, feature requests, and pull re
 Here is a list of important resources for contributors:
 
 - `Source Code`_
-- `Documentation`_
 - `Issue Tracker`_
 - `Code of Conduct`_
 
@@ -56,11 +55,6 @@ Install the package with development requirements:
 
 You can now run an interactive Python session,
 or the command-line interface:
-
-.. code:: console
-
-   $ poetry run python
-   $ poetry run aiocloudflare
 
 .. _Poetry: https://python-poetry.org/
 .. _Nox: https://nox.thea.codes/
