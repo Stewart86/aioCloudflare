@@ -647,7 +647,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 name = "respx"
 version = "0.17.1"
 description = "A utility for mocking out the Python HTTPX and HTTP Core libraries."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -807,7 +807,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "9bc0386485c48dab54155fdacc17499c1bbbcc584afa34b435acc4b5146b7d1c"
+content-hash = "0e19fddfaa23a85f47fec86ce648934fbca7cd59e18eff979eaeaaed633196eb"
 
 [metadata.files]
 anyio = [
