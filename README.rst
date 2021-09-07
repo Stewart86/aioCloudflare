@@ -44,7 +44,7 @@ Features
 Requirements
 ------------
 
-* ``Python`` > 3.9
+* ``Python`` 3.9+
 
 
 Installation
@@ -88,3 +88,11 @@ Issues
 
 If you encounter any problems,
 please `file an issue`_ along with a detailed description.
+
+
+.. _MIT license: https://opensource.org/licenses/MIT
+.. _PyPI: https://pypi.org/
+.. _file an issue: https://github.com/stewart86/aiocloudflare/issues
+.. _pip: https://pip.pypa.io/
+.. github-only
+.. _Contributor Guide: CONTRIBUTING.rst
