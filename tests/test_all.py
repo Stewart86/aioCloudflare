@@ -2739,16 +2739,6 @@ async def test_accounts_access_apps(respx_mock, config):
 
 
 @pytest.mark.asyncio
-async def test_accounts_access_apps_ca(respx_mock, config):
-    respx_mock.get(
-        "https://api.doesnotmatter.com/accounts/id1/access/apps/ca/id2"
-    ).mock(return_value=httpx.Response(200))
-    async with Cloudflare(config=config) as cf:
-        result = await cf.accounts.access.apps.ca.get("id1", "id2")
-        assert result.status_code == 200
-
-
-@pytest.mark.asyncio
 async def test_accounts_access_apps_revoke_tokens(respx_mock, config):
     respx_mock.get(
         "https://api.doesnotmatter.com/accounts/id1/access/apps/id2/revoke_tokens/id3"
