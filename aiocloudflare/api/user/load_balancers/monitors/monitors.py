@@ -10,9 +10,9 @@ class Monitors(Auth):
     _endpoint3 = None
 
     @property
-    def preview(self) -> Preview:
-        return Preview(self._config, self._session)
-
-    @property
     def references(self) -> References:
         return References(self._config, self._session)
+
+    @property
+    def preview(self) -> Preview:
+        return Preview(self._config, self._session)

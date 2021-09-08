@@ -18,20 +18,8 @@ class User(Auth):
     _endpoint3 = None
 
     @property
-    def billing(self) -> Billing:
-        return Billing(self._config, self._session)
-
-    @property
-    def firewall(self) -> Firewall:
-        return Firewall(self._config, self._session)
-
-    @property
-    def invites(self) -> Invites:
-        return Invites(self._config, self._session)
-
-    @property
-    def organizations(self) -> Organizations:
-        return Organizations(self._config, self._session)
+    def workers(self) -> Workers:
+        return Workers(self._config, self._session)
 
     @property
     def subscriptions(self) -> Subscriptions:
@@ -42,17 +30,29 @@ class User(Auth):
         return LoadBalancers(self._config, self._session)
 
     @property
-    def workers(self) -> Workers:
-        return Workers(self._config, self._session)
+    def tokens(self) -> Tokens:
+        return Tokens(self._config, self._session)
+
+    @property
+    def firewall(self) -> Firewall:
+        return Firewall(self._config, self._session)
 
     @property
     def audit_logs(self) -> AuditLogs:
         return AuditLogs(self._config, self._session)
 
     @property
-    def load_balancing_analytics(self) -> LoadBalancingAnalytics:
-        return LoadBalancingAnalytics(self._config, self._session)
+    def organizations(self) -> Organizations:
+        return Organizations(self._config, self._session)
 
     @property
-    def tokens(self) -> Tokens:
-        return Tokens(self._config, self._session)
+    def invites(self) -> Invites:
+        return Invites(self._config, self._session)
+
+    @property
+    def billing(self) -> Billing:
+        return Billing(self._config, self._session)
+
+    @property
+    def load_balancing_analytics(self) -> LoadBalancingAnalytics:
+        return LoadBalancingAnalytics(self._config, self._session)
