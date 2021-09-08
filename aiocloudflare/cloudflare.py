@@ -39,12 +39,9 @@ class Cloudflare:
         email: Optional[str] = None,
         token: Optional[str] = None,
         certtoken: Optional[str] = None,
-        raw: Optional[str] = None,  # TODO
-        profile: Optional[str] = None,  # TODO
         user_agent: Optional[dict[str, str]] = None,
         base_url: Optional[str] = None,
         debug: Optional[bool] = False,
-        test: Optional[bool] = None,  # TODO
         logger: Optional[Logger] = None,
         config: Optional[Config] = None,
     ) -> None:
@@ -91,12 +88,9 @@ class Cloudflare:
                 email,
                 token,
                 certtoken,
-                raw,
-                profile,
                 user_agent,
                 base_url,
                 debug,
-                test,
             )
 
             if logger:
