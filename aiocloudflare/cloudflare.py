@@ -39,12 +39,9 @@ class Cloudflare:
         email: Optional[str] = None,
         token: Optional[str] = None,
         certtoken: Optional[str] = None,
-        raw: Optional[str] = None,  # TODO
-        profile: Optional[str] = None,  # TODO
         user_agent: Optional[dict[str, str]] = None,
         base_url: Optional[str] = None,
         debug: Optional[bool] = False,
-        test: Optional[bool] = None,  # TODO
         logger: Optional[Logger] = None,
         config: Optional[Config] = None,
     ) -> None:
@@ -73,14 +70,13 @@ class Cloudflare:
                 API token from Cloudflare. Defaults to None.
             certtoken (Optional[str], optional):
                 To use Cert Token **current not implemented**. Defaults to None.
-            raw (Optional[str], optional): Not Implemented. Defaults to None.
+            user_agent (Optional[dict[str,str]], optional):
+                To modify the user agent header send to Cloudflare API. Most
+                for Cloudflare support when erro occurs.
             base_url (Optional[str], optional): If not provided, it will
                 defaults to cloudflare's v4 API. Defaults to None.
             debug (Optional[bool], optional): To set debug as true, logs will
                 be more verbose. Defaults to False.
-            test (Optional[bool], optional): If True, config will ignore all
-                args in the init method and use a seperate config must be
-                provided. Defaults to None.
             config (Optional[Config], optional): An optional config class
                 include all settings. Defaults to None.
         """
@@ -91,12 +87,9 @@ class Cloudflare:
                 email,
                 token,
                 certtoken,
-                raw,
-                profile,
                 user_agent,
                 base_url,
                 debug,
-                test,
             )
 
             if logger:

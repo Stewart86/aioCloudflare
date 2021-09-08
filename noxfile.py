@@ -16,7 +16,7 @@ except ImportError:
 
 
 package = "aiocloudflare"
-python_versions = ["3.9", "3.8", "3.7"]
+python_versions = ["3.9"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = ("pre-commit", "safety", "mypy", "tests")
 
@@ -113,7 +113,7 @@ def mypy(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
-    session.install("coverage[toml]", "pytest", "pygments", "respx")
+    session.install("coverage[toml]", "pytest", "pygments", "respx", "pytest-asyncio")
     try:
         session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
     finally:
