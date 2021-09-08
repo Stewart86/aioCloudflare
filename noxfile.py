@@ -131,4 +131,4 @@ def coverage(session: Session) -> None:
     if not session.posargs and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
 
-    session.run("coverage", *args)
+    session.run("coverage", *args, "-i")
