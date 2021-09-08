@@ -10,9 +10,9 @@ class Lists(Auth):
     _endpoint3 = None
 
     @property
-    def items(self) -> Items:
-        return Items(self._config, self._session)
-
-    @property
     def bulk_operations(self) -> BulkOperations:
         return BulkOperations(self._config, self._session)
+
+    @property
+    def items(self) -> Items:
+        return Items(self._config, self._session)

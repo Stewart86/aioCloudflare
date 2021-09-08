@@ -10,9 +10,9 @@ class Packages(Auth):
     _endpoint3 = None
 
     @property
-    def groups(self) -> Groups:
-        return Groups(self._config, self._session)
-
-    @property
     def rules(self) -> Rules:
         return Rules(self._config, self._session)
+
+    @property
+    def groups(self) -> Groups:
+        return Groups(self._config, self._session)

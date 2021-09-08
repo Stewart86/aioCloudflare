@@ -11,13 +11,13 @@ class Pools(Auth):
     _endpoint3 = None
 
     @property
+    def references(self) -> References:
+        return References(self._config, self._session)
+
+    @property
     def health(self) -> Health:
         return Health(self._config, self._session)
 
     @property
     def preview(self) -> Preview:
         return Preview(self._config, self._session)
-
-    @property
-    def references(self) -> References:
-        return References(self._config, self._session)

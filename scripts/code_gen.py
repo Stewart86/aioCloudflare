@@ -44,14 +44,17 @@ class CodeGen:
                     combined_path = self.__split_clean_path(endpoint)
                     path = copy(combined_path)
                     combined_path.reverse()
+                    props_lookup_key = ""
+
+                    if len(combined_path) > 1:
+                        props_lookup_key = "".join(combined_path)
+                    else:
+                        props_lookup_key = combined_path[0]
+
                     class_ = {
                         "name": combined_path[0],
                         "auth": endpoint[0],
-                        "props": back_ref[
-                            f"{combined_path[0]}"
-                            if len(combined_path) <= 2
-                            else f"{combined_path[0]}{combined_path[1]}"
-                        ],
+                        "props": back_ref[props_lookup_key],
                         "destination": not bool(len(back_ref[combined_path[0]])),
                         "path": path,
                     }
@@ -62,8 +65,8 @@ class CodeGen:
 
         self._tree = result
 
-        tg = TestGen()
-        print(tg.write(result))
+        # tg = TestGen()
+        # print(tg.write(result))
         # return result for debug print statement
         return result
 
@@ -172,32 +175,15 @@ class CodeGen:
     def __build_backref(
         self, module: dict[str, list[list[str]]]
     ) -> defaultdict[str, list[str]]:
-        back_ref: defaultdict[str, list[str]] = defaultdict(lambda: list())
+        back_ref: defaultdict[str, set[str]] = defaultdict(lambda: set())
         for endpoints in module.values():
-            for i, endpoint in enumerate(endpoints):
-                # combined endpoints split by "/" e.g. ["zones","settings","waf"]
+            for endpoint in endpoints:
                 combined_path = self.__split_clean_path(endpoint)
                 combined_path.reverse()
+                back_ref["".join(combined_path[1:])].add(combined_path[0])
 
-                # loop combined path  in reverse e.g. ["waf","settings","zones"]
-                for i, c in enumerate(combined_path):
-                    # to be as unique as possible to avoid common names
-                    # could add more condition if needed
-                    if len(combined_path) > i + 2:
-                        # waf settings zones
-                        if (
-                            c
-                            not in back_ref[
-                                f"{combined_path[i + 1]}{combined_path[i + 2]}"
-                            ]
-                        ):
-                            back_ref[
-                                f"{combined_path[i + 1]}{combined_path[i + 2]}"
-                            ].append(c)
-
-                    elif len(combined_path) > i + 1:
-                        if c not in back_ref[combined_path[i + 1]]:
-                            back_ref[combined_path[i + 1]].append(c)
+        convert_list = {k: list(v) for k, v in back_ref.items()}
+        print(json.dumps(convert_list, indent=4))
         return back_ref
 
     def __set_endpoints(self, endpoint: list[str]) -> dict[str, Union[str, None]]:
@@ -256,11 +242,14 @@ if "__main__" == __name__:
         data = json.load(f)
 
     code_gen: CodeGen = CodeGen(data)
-    code_gen.build_tree()
+    tree = code_gen.build_tree()
     code_gen.build_file()
 
+    test_gen = TestGen()
+    test_gen.write(tree)
+
     try:
-        black.main(args=("aiocloudflare/api",))
+        black.main(args=("aiocloudflare/api", "tests"))
     # black  raise SystemExit is unnessary here. catch this to exit gracfully
     except SystemExit:
         pass
