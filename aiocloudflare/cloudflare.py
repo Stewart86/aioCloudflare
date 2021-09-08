@@ -32,6 +32,8 @@ class ClientState(Enum):
 
 
 class Cloudflare:
+    """Cloudflare API Client, a main entry point to all API endpoints."""
+
     def __init__(
         self,
         email: Optional[str] = None,
@@ -46,6 +48,42 @@ class Cloudflare:
         logger: Optional[Logger] = None,
         config: Optional[Config] = None,
     ) -> None:
+        """To initalise with async context manager for async calls.
+        This Class currently only support async operations. To use sync operations,
+        please use Cloudflare offical Python library `python-cloudflare`
+
+        >>> async with Cloudflare() as cf:
+        >>>     result = await cf.zones.get()
+
+        An optional `Config()` class can also be use to configure the Cloudflare
+        instance. When initialised with the config class parameter, all other
+        parameters will be ignored.
+
+        >>> from aiocloudflare import Cloudflare, Config
+        >>>
+        >>>
+        >>> config = Config(email="your@email.com", token="<secret>")
+        >>> async with Cloudflare(config=config) as cf:
+        >>>     result = await cf.zones.get()
+
+        Args:
+            email (Optional[str], optional):
+                Registered email to Cloudflare API. Defaults to None.
+            token (Optional[str], optional):
+                API token from Cloudflare. Defaults to None.
+            certtoken (Optional[str], optional):
+                To use Cert Token **current not implemented**. Defaults to None.
+            raw (Optional[str], optional): Not Implemented. Defaults to None.
+            base_url (Optional[str], optional): If not provided, it will
+                defaults to cloudflare's v4 API. Defaults to None.
+            debug (Optional[bool], optional): To set debug as true, logs will
+                be more verbose. Defaults to False.
+            test (Optional[bool], optional): If True, config will ignore all
+                args in the init method and use a seperate config must be
+                provided. Defaults to None.
+            config (Optional[Config], optional): An optional config class
+                include all settings. Defaults to None.
+        """
         if config:
             self._config = config
         else:

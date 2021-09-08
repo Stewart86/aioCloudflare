@@ -32,9 +32,9 @@ aioCloudflare
    :target: https://github.com/psf/black
    :alt: Black
 
-Inspired by the offical `python-cloudflare` library developed by `Cloudflare`_. This project is created to be competible to use with `asyncio` for non-blocking IO.
+Inspired by the offical ``python-cloudflare`` library developed by `Cloudflare`_. This project is created to be compatible with ``asyncio`` for non-blocking IO.
 
-For sync code, it is recommanded to use `python-cloudflare` via `pip install python-cloudflare` as it is used by hundreds and offically maintained by cloudflare. This ensure that APIs are always updated according to Cloudflare API release.
+For sync code, it is recommanded to use ``python-cloudflare`` via ``pip install python-cloudflare`` as it is used by hundreds and offically maintained by Cloudflare. This ensure that APIs are always updated according to Cloudflare API release.
 
 *NOTE:* This library is in Pre-Alpha, this means things might break. Do not use it in Production unless you have tested on the API route specific to your use case and that would be at your own risk.
 
@@ -46,6 +46,13 @@ Features
 * async http API call using modern http library ``httpx``.
 * Autocompletion on IDE.
 * Fully type hinted.
+
+Feature Roadmap
+---------------
+
+* to support cert token
+* to support sync API client
+* to get to 100% test coverage
 
 
 Requirements
@@ -86,6 +93,18 @@ Full configuration can be done using `Config()` class.
         async with Cloudflare(config=config) as cf:
             result = await cf.zones.get()
 
+Configuration can also be stored in a ``.env`` file for a "global configuration without needing to create a ``Config()`` class. Keys available are:
+
+.. code:: console
+
+    CF_API_EMAIL=""
+    CF_API_KEY=""
+    CF_API_CERTKEY=""
+    CF_API_URL=""
+    DEBUG=false
+    CF_PROFILE=""
+    USER_AGENT=""
+
 
 Contributing
 ------------
@@ -112,6 +131,6 @@ please `file an issue`_ along with a detailed description.
 .. _PyPI: https://pypi.org/
 .. _file an issue: https://github.com/stewart86/aiocloudflare/issues
 .. _pip: https://pip.pypa.io/
+.. _Cloudflare: https://github.com/cloudflare/python-cloudflare
 .. github-only
 .. _Contributor Guide: CONTRIBUTING.rst
-.. _Cloudflare: https://cloudflare.com
