@@ -47,6 +47,13 @@ Features
 * Autocompletion on IDE.
 * Fully type hinted.
 
+Feature Roadmap
+---------------
+
+* to support cert token
+* to support sync API client
+* to get to 100% test coverage
+
 
 Requirements
 ------------
