@@ -122,7 +122,7 @@ License
 -------
 
 Distributed under the terms of the `MIT license`_,
-*Hello World* is free and open source software.
+*aioCloudflare* is free and open source software.
 
 
 Issues
