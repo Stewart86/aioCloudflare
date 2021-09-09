@@ -7,6 +7,8 @@ aioCloudflare
 
 |pre-commit| |Black|
 
+|Downloads|
+
 .. |PyPI| image:: https://img.shields.io/pypi/v/aiocloudflare.svg
    :target: https://pypi.org/project/aiocloudflare/
    :alt: PyPI
@@ -31,12 +33,15 @@ aioCloudflare
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black
+.. |Downloads| image:: https://static.pepy.tech/badge/aiocloudflare
+   :target: https://pepy.tech/project/aiocloudflare
+   :alt: Downloads
 
 Inspired by the offical ``python-cloudflare`` library developed by `Cloudflare`_. This project is created to be compatible with ``asyncio`` for non-blocking IO.
 
 For sync code, it is recommanded to use ``python-cloudflare`` via ``pip install python-cloudflare`` as it is used by hundreds and offically maintained by Cloudflare. This ensure that APIs are always updated according to Cloudflare API release.
 
-*NOTE:* This library is in Pre-Alpha, this means things might break. Do not use it in Production unless you have tested on the API route specific to your use case and that would be at your own risk.
+*NOTE:* This library is in Beta, this means fixes and updates are still going on every second. Do not use it in Production unless you have tested on the API route specific to your use case and that would be at your own risk.
 
 Having said that, do submit an issue if you encounter any bug so we can move away from the Alpha stage sooner.
 
