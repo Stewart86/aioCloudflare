@@ -57,7 +57,9 @@ Feature Roadmap
 
 * to support cert token
 * to support sync API client
-* to get to 100% test coverage
+
+These are some alternative use cases that are not in the top of my priority now as I have not received
+any request for. If you are interested, you may want to submit a pull request to contribute some of these features.
 
 
 Requirements
@@ -85,9 +87,35 @@ Usage
 
     async def get_zone():
         async with Cloudflare() as cf:
-            result = await cf.zones.get()
+            response = await cf.zones.get()
 
-Full configuration can be done using `Config()` class.
+Unlike the offical ``python-cloudflare`` library, ``aiocloudflare`` does not parse and handle http responses.
+
+So the awaited response object will have to be handled just as any http request, response pattern. the ``Response`` object is the same as ``httpx``'s ``Response``.
+
+.. code:: Python
+
+    from aiocloudflare import Cloudflare
+
+    async def get_zone():
+        async with Cloudflare() as cf:
+            response = await cf.zones.get()
+
+            # check status code
+            if response.status_code == 200:
+
+                # get json data
+                resp_json = response.json()
+
+                # Cloudflare API typically store results in a ``result`` key.
+                return resp_json["result"]
+
+            else:
+                # to get texture data from response
+                print(response.text)
+
+
+Full configuration can be done using ``Config()`` class.
 
 .. code:: Python
 
@@ -98,7 +126,7 @@ Full configuration can be done using `Config()` class.
         async with Cloudflare(config=config) as cf:
             result = await cf.zones.get()
 
-Configuration can also be stored in a ``.env`` file for a "global configuration without needing to create a ``Config()`` class. Keys available are:
+Configuration can also be stored in a ``.env`` file for a "global" configuration without needing to create a ``Config()`` class. Keys available are:
 
 .. code:: console
 
