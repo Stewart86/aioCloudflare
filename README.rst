@@ -93,7 +93,7 @@ Full configuration can be done using `Config()` class.
 
     from aioCloudflare import Cloudflare, Config
 
-    config = Config(email="your@email.com", token="<secret>")
+    config = Config(email="your@email.com", token="<secret>")  # for demo only, do not hardcode secrets
     async def get_zone():
         async with Cloudflare(config=config) as cf:
             result = await cf.zones.get()
@@ -109,6 +109,31 @@ Configuration can also be stored in a ``.env`` file for a "global configuration 
     DEBUG=false
     CF_PROFILE=""
     USER_AGENT=""
+
+Advance Usage
+_____________
+
+You may wish to wrap ``Cloudflare()`` into you own class for customised settings or requirements. To do that, just provide a ``__aenter__()`` and ``__aexit__()`` method to your class like so.
+
+.. code:: Python
+
+    class MyCfClient:
+        def __init__(self):
+            self._config = Config(email="your@email.com", token="<secret>")  # for demo only, do not hardcode secrets
+
+        async def __aenter__(self):
+            self._client = Cloudflare(config=self._config)
+            return self
+
+        async def __aexit__(self, exc_type, exc_value, traceback):
+            await self._client.aclose()
+
+Then you can call your own class with async context manager.
+
+.. code:: Python
+
+    async with MyCfClient() as own_class:
+        await own_class.zones.get()
 
 
 Contributing
