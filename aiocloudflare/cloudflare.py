@@ -111,7 +111,7 @@ class Cloudflare:
             raise RuntimeError(msg)
 
         self._state = ClientState.OPENED
-        await self._session.__aenter__()
+        self._session = await self._session.__aenter__()
         return self
 
     async def __aexit__(
