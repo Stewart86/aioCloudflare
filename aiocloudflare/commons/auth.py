@@ -12,7 +12,6 @@ from httpx._types import (
     QueryParamTypes,
     RequestContent,
     RequestFiles,
-    TimeoutTypes,
 )
 
 from aiocloudflare.commons.exceptions import AuthenticationError
@@ -49,8 +48,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         """GET method with AUTH"""
         self.__auth_init()
@@ -60,10 +58,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             headers=headers,
             cookies=cookies,
             auth=self._auth,
-            allow_redirects=allow_redirects
-            if allow_redirects is not None
+            follow_redirects=follow_redirects
+            if follow_redirects is not None
             else USE_CLIENT_DEFAULT,
-            timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
     async def post(
@@ -77,8 +74,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         self.__auth_init()
         return await super().post(
@@ -91,10 +87,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             headers=headers,
             cookies=cookies,
             auth=self._auth,
-            allow_redirects=allow_redirects
-            if allow_redirects is not None
+            follow_redirects=follow_redirects
+            if follow_redirects is not None
             else USE_CLIENT_DEFAULT,
-            timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
     async def put(
@@ -108,8 +103,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         self.__auth_init()
         return await super().put(
@@ -122,10 +116,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             headers=headers,
             cookies=cookies,
             auth=self._auth,
-            allow_redirects=allow_redirects
-            if allow_redirects is not None
+            follow_redirects=follow_redirects
+            if follow_redirects is not None
             else USE_CLIENT_DEFAULT,
-            timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
     async def delete(
@@ -135,8 +128,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         self.__auth_init()
         return await super().delete(
@@ -145,10 +137,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             headers=headers,
             cookies=cookies,
             auth=self._auth,
-            allow_redirects=allow_redirects
-            if allow_redirects is not None
+            follow_redirects=follow_redirects
+            if follow_redirects is not None
             else USE_CLIENT_DEFAULT,
-            timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
     async def patch(
@@ -162,8 +153,7 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         self.__auth_init()
         return await super().patch(
@@ -176,10 +166,9 @@ class Auth(BaseClient, Get, Post, Put, Delete, Patch):
             headers=headers,
             cookies=cookies,
             auth=self._auth,
-            allow_redirects=allow_redirects
-            if allow_redirects is not None
+            follow_redirects=follow_redirects
+            if follow_redirects is not None
             else USE_CLIENT_DEFAULT,
-            timeout=timeout if timeout is not None else USE_CLIENT_DEFAULT,
         )
 
     def __auth_init(self) -> None:
