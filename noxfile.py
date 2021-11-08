@@ -17,7 +17,7 @@ except ImportError as err:
 
 package = "aiocloudflare"
 python_versions = ["3.9"]
-nox.needs_version = ">= 2021.6.6"
+nox.needs_version = ">= 2021.10.1"
 nox.options.sessions = ("pre-commit", "safety", "mypy", "tests")
 
 
