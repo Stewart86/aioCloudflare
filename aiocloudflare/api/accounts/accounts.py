@@ -29,85 +29,85 @@ class Accounts(Auth):
     _endpoint3 = None
 
     @property
-    def billing(self) -> Billing:
-        return Billing(self._config, self._session)
+    def firewall(self) -> Firewall:
+        return Firewall(self._config, self._session)
 
     @property
-    def custom_pages(self) -> CustomPages:
-        return CustomPages(self._config, self._session)
-
-    @property
-    def members(self) -> Members:
-        return Members(self._config, self._session)
-
-    @property
-    def railguns(self) -> Railguns:
-        return Railguns(self._config, self._session)
-
-    @property
-    def registrar(self) -> Registrar:
-        return Registrar(self._config, self._session)
-
-    @property
-    def roles(self) -> Roles:
-        return Roles(self._config, self._session)
-
-    @property
-    def rules(self) -> Rules:
-        return Rules(self._config, self._session)
-
-    @property
-    def rulesets(self) -> Rulesets:
-        return Rulesets(self._config, self._session)
-
-    @property
-    def storage(self) -> Storage:
-        return Storage(self._config, self._session)
-
-    @property
-    def subscriptions(self) -> Subscriptions:
-        return Subscriptions(self._config, self._session)
-
-    @property
-    def tunnels(self) -> Tunnels:
-        return Tunnels(self._config, self._session)
-
-    @property
-    def virtual_dns(self) -> VirtualDns:
-        return VirtualDns(self._config, self._session)
-
-    @property
-    def workers(self) -> Workers:
-        return Workers(self._config, self._session)
+    def diagnostics(self) -> Diagnostics:
+        return Diagnostics(self._config, self._session)
 
     @property
     def addressing(self) -> Addressing:
         return Addressing(self._config, self._session)
 
     @property
-    def audit_logs(self) -> AuditLogs:
-        return AuditLogs(self._config, self._session)
+    def rulesets(self) -> Rulesets:
+        return Rulesets(self._config, self._session)
 
     @property
     def load_balancers(self) -> LoadBalancers:
         return LoadBalancers(self._config, self._session)
 
     @property
-    def firewall(self) -> Firewall:
-        return Firewall(self._config, self._session)
-
-    @property
-    def secondary_dns(self) -> SecondaryDns:
-        return SecondaryDns(self._config, self._session)
-
-    @property
-    def stream(self) -> Stream:
-        return Stream(self._config, self._session)
+    def rules(self) -> Rules:
+        return Rules(self._config, self._session)
 
     @property
     def access(self) -> Access:
         return Access(self._config, self._session)
 
     @property
-    def diagnostics(self) -> Diagnostics:
-        return Diagnostics(self._config, self._session)
+    def members(self) -> Members:
+        return Members(self._config, self._session)
+
+    @property
+    def roles(self) -> Roles:
+        return Roles(self._config, self._session)
+
+    @property
+    def storage(self) -> Storage:
+        return Storage(self._config, self._session)
+
+    @property
+    def audit_logs(self) -> AuditLogs:
+        return AuditLogs(self._config, self._session)
+
+    @property
+    def railguns(self) -> Railguns:
+        return Railguns(self._config, self._session)
+
+    @property
+    def secondary_dns(self) -> SecondaryDns:
+        return SecondaryDns(self._config, self._session)
+
+    @property
+    def virtual_dns(self) -> VirtualDns:
+        return VirtualDns(self._config, self._session)
+
+    @property
+    def tunnels(self) -> Tunnels:
+        return Tunnels(self._config, self._session)
+
+    @property
+    def custom_pages(self) -> CustomPages:
+        return CustomPages(self._config, self._session)
+
+    @property
+    def workers(self) -> Workers:
+        return Workers(self._config, self._session)
+
+    @property
+    def registrar(self) -> Registrar:
+        return Registrar(self._config, self._session)
+
+    @property
+    def subscriptions(self) -> Subscriptions:
+        return Subscriptions(self._config, self._session)
+
+    @property
+    def billing(self) -> Billing:
+        return Billing(self._config, self._session)
+
+    @property
+    def stream(self) -> Stream:
+        return Stream(self._config, self._session)

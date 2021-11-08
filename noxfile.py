@@ -7,12 +7,12 @@ import nox
 
 try:
     from nox_poetry import Session, session
-except ImportError:
+except ImportError as err:
     message = f"""\
     Nox failed to import the 'nox-poetry' package.
     Please install it using the following command:
     {sys.executable} -m pip install nox-poetry"""
-    raise SystemExit(dedent(message)) from None
+    raise SystemExit(dedent(message)) from err
 
 
 package = "aiocloudflare"
@@ -113,7 +113,7 @@ def mypy(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
-    session.install("coverage[toml]", "pytest", "pygments", "respx")
+    session.install("coverage[toml]", "pytest", "pygments", "respx", "pytest-asyncio")
     try:
         session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
     finally:
@@ -131,4 +131,4 @@ def coverage(session: Session) -> None:
     if not session.posargs and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
 
-    session.run("coverage", *args)
+    session.run("coverage", *args, "-i")

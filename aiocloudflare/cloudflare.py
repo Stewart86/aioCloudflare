@@ -32,20 +32,54 @@ class ClientState(Enum):
 
 
 class Cloudflare:
+    """Cloudflare API Client, a main entry point to all API endpoints."""
+
     def __init__(
         self,
         email: Optional[str] = None,
         token: Optional[str] = None,
         certtoken: Optional[str] = None,
-        raw: Optional[str] = None,  # TODO
-        profile: Optional[str] = None,  # TODO
         user_agent: Optional[dict[str, str]] = None,
         base_url: Optional[str] = None,
         debug: Optional[bool] = False,
-        test: Optional[bool] = None,  # TODO
         logger: Optional[Logger] = None,
         config: Optional[Config] = None,
     ) -> None:
+        """To initalise with async context manager for async calls.
+        This Class currently only support async operations. To use sync operations,
+        please use Cloudflare offical Python library `python-cloudflare`
+
+        >>> async with Cloudflare() as cf:
+        >>>     result = await cf.zones.get()
+
+        An optional `Config()` class can also be use to configure the Cloudflare
+        instance. When initialised with the config class parameter, all other
+        parameters will be ignored.
+
+        >>> from aiocloudflare import Cloudflare, Config
+        >>>
+        >>>
+        >>> config = Config(email="your@email.com", token="<secret>")
+        >>> async with Cloudflare(config=config) as cf:
+        >>>     result = await cf.zones.get()
+
+        Args:
+            email (Optional[str], optional):
+                Registered email to Cloudflare API. Defaults to None.
+            token (Optional[str], optional):
+                API token from Cloudflare. Defaults to None.
+            certtoken (Optional[str], optional):
+                To use Cert Token **current not implemented**. Defaults to None.
+            user_agent (Optional[dict[str,str]], optional):
+                To modify the user agent header send to Cloudflare API. Most
+                for Cloudflare support when erro occurs.
+            base_url (Optional[str], optional): If not provided, it will
+                defaults to cloudflare's v4 API. Defaults to None.
+            debug (Optional[bool], optional): To set debug as true, logs will
+                be more verbose. Defaults to False.
+            config (Optional[Config], optional): An optional config class
+                include all settings. Defaults to None.
+        """
         if config:
             self._config = config
         else:
@@ -53,12 +87,9 @@ class Cloudflare:
                 email,
                 token,
                 certtoken,
-                raw,
-                profile,
                 user_agent,
                 base_url,
                 debug,
-                test,
             )
 
             if logger:
@@ -80,7 +111,7 @@ class Cloudflare:
             raise RuntimeError(msg)
 
         self._state = ClientState.OPENED
-        await self._session.__aenter__()
+        self._session = await self._session.__aenter__()
         return self
 
     async def __aexit__(
