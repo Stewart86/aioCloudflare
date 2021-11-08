@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aiocloudflare"
-version = "0.2.0-beta-4"
+version = "0.2.1"
 description = "A Cloudflare API wrapper for Python with asyncio support"
 authors = ["Stewart Wong <siwei.wong@gmail.com>"]
 license = "MIT"
@@ -8,9 +8,10 @@ readme = "README.rst"
 homepage = "https://github.com/stewart86/aiocloudflare"
 repository = "https://github.com/stewart86/aiocloudflare"
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
