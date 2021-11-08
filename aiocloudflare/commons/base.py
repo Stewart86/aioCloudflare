@@ -11,7 +11,6 @@ from httpx._types import (
     QueryParamTypes,
     RequestContent,
     RequestFiles,
-    TimeoutTypes,
 )
 
 from aiocloudflare.commons.config import Config
@@ -82,8 +81,7 @@ class Get:
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("get", *args)  # noqa
@@ -96,7 +94,7 @@ class Get:
             cookies=cookies,
         )
         return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+            request=request, auth=auth, follow_redirects=follow_redirects
         )
 
 
@@ -119,8 +117,7 @@ class Post:
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("post", *args, data=data)  # noqa
@@ -135,7 +132,7 @@ class Post:
             content=content,
         )
         return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+            request=request, auth=auth, follow_redirects=follow_redirects
         )
 
 
@@ -158,8 +155,7 @@ class Put:
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("put", *args, data=data)  # noqa
@@ -174,7 +170,7 @@ class Put:
             params=params,
         )
         return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+            request=request, auth=auth, follow_redirects=follow_redirects
         )
 
 
@@ -197,8 +193,7 @@ class Patch:
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("patch", *args, data=data)  # noqa
@@ -213,7 +208,7 @@ class Patch:
             params=params,
         )
         return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+            request=request, auth=auth, follow_redirects=follow_redirects
         )
 
 
@@ -232,8 +227,7 @@ class Delete:
         headers: HeaderTypes = None,  # type: ignore[assignment]
         cookies: CookieTypes = None,  # type: ignore[assignment]
         auth: typing.Union[AuthTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
-        allow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
-        timeout: typing.Union[TimeoutTypes, UseClientDefault] = USE_CLIENT_DEFAULT,
+        follow_redirects: typing.Union[bool, UseClientDefault] = USE_CLIENT_DEFAULT,
     ) -> Response:
         if self._config.DEBUG:
             getattr(self, "debug_print")("delete", *args)  # noqa
@@ -245,5 +239,5 @@ class Delete:
             params=params,
         )
         return await self._session.send(
-            request=request, auth=auth, allow_redirects=allow_redirects, timeout=timeout
+            request=request, auth=auth, follow_redirects=follow_redirects
         )
